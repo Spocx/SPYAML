@@ -44,7 +44,7 @@ func set_enabled(_enabled : bool):
 	if(enabled):
 		enabled_tween.tween_property(self,"modulate:a",1,0.1)
 	else:
-		enabled_tween.tween_property(self,"modulate:a",0.5,0.1)
+		enabled_tween.tween_property(self,"modulate:a",0.1,0.1)
 
 func toggle():
 	if(enabled):

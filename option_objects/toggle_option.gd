@@ -21,19 +21,22 @@ func value_changed(_value : bool):
 		value_label.text = "off"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(235,160,172))
 
-var enabled_tween : Tween
+#var enabled_tween : Tween
 func randomize_button_pressed():
-	if enabled_tween:
-		enabled_tween.kill()
-	enabled_tween = create_tween()
-	enabled_tween.set_ease(Tween.EASE_OUT)
+	#if enabled_tween:
+	#	enabled_tween.kill()
+	#enabled_tween = create_tween()
+	#enabled_tween.set_ease(Tween.EASE_OUT)
 	
 	if randomize_button.button_pressed:
 		customcheckbox.set_enabled(false)
-		enabled_tween.tween_property(value_label,"modulate:a",0.3,0.1)
+		#enabled_tween.tween_property(value_label,"modulate:a",0.3,0.1)
+		value_label.text = "random"
+		value_label.add_theme_color_override("font_color",Color.from_rgba8(137,220,235))
 	else:
 		customcheckbox.set_enabled(true)
-		enabled_tween.tween_property(value_label,"modulate:a",1,0.1)
+		#enabled_tween.tween_property(value_label,"modulate:a",1,0.1)
+		value_changed(value)
 
 func create_tooltip():
 	var tooltip_desc : String = description
@@ -46,4 +49,5 @@ func init(data: Dictionary, option_name : String):
 	if int(data["value"]["'true'"]) == 50:
 		toggle_by_default = true
 		pass
+	value = false
 	pass
