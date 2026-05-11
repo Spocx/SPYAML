@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://ykg5dl4j332k"]
+
+[ext_resource type="Script" uid="uid://5ap7cfxgy4sx" path="res://option_objects/custom_checkbox.gd" id="1_p0o6n"]
+[ext_resource type="Texture2D" uid="uid://b4t1084o41a4w" path="res://toggle.png" id="2_pxlxt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vuqmd"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[node name="customcheckbox" type="PanelContainer" unique_id=1578514450]
+custom_minimum_size = Vector2(40, 0)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vuqmd")
+script = ExtResource("1_p0o6n")
+color_on = Color(0.79607844, 0.6509804, 0.96862745, 1)
+color_off = Color(0.05882353, 0.05882353, 0.09019608, 1)
+
+[node name="bg" type="NinePatchRect" parent="." unique_id=2145925504]
+self_modulate = Color(0.05882353, 0.05882353, 0.09019608, 1)
+layout_mode = 2
+texture = ExtResource("2_pxlxt")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="slider" type="NinePatchRect" parent="bg" unique_id=1298959929]
+self_modulate = Color(0.79394495, 0.64989996, 0.97, 0)
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 16.0
+texture = ExtResource("2_pxlxt")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="knob" type="NinePatchRect" parent="bg/slider" unique_id=956967874]
+self_modulate = Color(0.8784314, 0.8784314, 0.8784314, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_pxlxt")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Button" type="Button" parent="bg" unique_id=216205713]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1

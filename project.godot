@@ -1,0 +1,51 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="SPYAML"
+run/main_scene="uid://cs4iwl7ephmwf"
+config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0.09803922, 0.09803922, 0.15294118, 1)
+boot_splash/stretch_mode=0
+boot_splash/image="uid://dsfw7uxuj2egd"
+config/icon="uid://cqv411tsrswiw"
+boot_splash/minimum_display_time=100
+
+[autoload]
+
+SaveLoad="*uid://p4db54ocua0x"
+Utilities="*uid://b8ha4bofrydsf"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[global_group]
+
+app=""
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"

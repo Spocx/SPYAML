@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dnju6jee76gni"]
+
+[ext_resource type="Script" uid="uid://doncuyrgcxmkw" path="res://option_objects/toggle_option.gd" id="1_vuqmd"]
+[ext_resource type="PackedScene" uid="uid://lhee8cu3gw2j" path="res://tooltip_ball.tscn" id="2_pv6lq"]
+[ext_resource type="PackedScene" uid="uid://ykg5dl4j332k" path="res://option_objects/custom_checkbox.tscn" id="3_5olyu"]
+[ext_resource type="FontFile" uid="uid://gh4we85kr00f" path="res://fonts/Inter_18pt-Bold.ttf" id="3_6ko8v"]
+
+[node name="ToggleOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("randomize_button", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip")]
+theme_override_constants/separation = 4
+script = ExtResource("1_vuqmd")
+randomize_button = NodePath("buttonsection/Button")
+option_label_area = NodePath("optionlabelsection")
+value_display_area = NodePath("valuedisplaysection")
+editing_area = NodePath("editingsection")
+button_area = NodePath("buttonsection")
+option_name_label = NodePath("optionlabelsection/Label")
+tooltip = NodePath("optionlabelsection/tooltip_ball")
+
+[node name="optionlabelsection" type="HBoxContainer" parent="." unique_id=1149554301]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="optionlabelsection" unique_id=373896103 instance=ExtResource("2_pv6lq")]
+layout_mode = 2
+tooltip = "this is a slider setting"
+
+[node name="Label" type="Label" parent="optionlabelsection" unique_id=182232785]
+layout_mode = 2
+text = "toggle setting"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="." unique_id=99891296]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="valuedisplaysection" type="HBoxContainer" parent="." unique_id=1168111212]
+layout_mode = 2
+
+[node name="value" type="Label" parent="valuedisplaysection" unique_id=1131150380]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.92156863, 0.627451, 0.6745098, 1)
+theme_override_colors/font_shadow_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_6ko8v")
+text = "off"
+horizontal_alignment = 2
+
+[node name="editingsection" type="HBoxContainer" parent="." unique_id=1491704628]
+layout_mode = 2
+
+[node name="customcheckbox" parent="editingsection" unique_id=1578514450 instance=ExtResource("3_5olyu")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="." unique_id=1089374539]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="buttonsection" type="HBoxContainer" parent="." unique_id=1293544318]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="buttonsection" unique_id=77213226]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+text = "randomize"

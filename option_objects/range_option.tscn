@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://crhnxaj4qg3il"]
+
+[ext_resource type="Script" uid="uid://dp62slfglei1e" path="res://option_objects/range_option.gd" id="1_q73o7"]
+[ext_resource type="PackedScene" uid="uid://lhee8cu3gw2j" path="res://tooltip_ball.tscn" id="1_xqsoy"]
+[ext_resource type="FontFile" uid="uid://rlpteggq4s3u" path="res://fonts/Inter_18pt-Regular.ttf" id="3_nsq4n"]
+
+[node name="RangeOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("slider", "value_label", "randomize_button", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip")]
+theme_override_constants/separation = 4
+script = ExtResource("1_q73o7")
+slider = NodePath("editingsection/HSlider")
+value_label = NodePath("valuedisplaysection/value")
+randomize_button = NodePath("buttonsection/Button")
+option_label_area = NodePath("optionlabelsection")
+value_display_area = NodePath("valuedisplaysection")
+editing_area = NodePath("editingsection")
+button_area = NodePath("buttonsection")
+option_name_label = NodePath("optionlabelsection/Label")
+tooltip = NodePath("optionlabelsection/tooltip_ball")
+
+[node name="optionlabelsection" type="HBoxContainer" parent="." unique_id=464737206]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="optionlabelsection" unique_id=373896103 instance=ExtResource("1_xqsoy")]
+layout_mode = 2
+tooltip = "this is a slider setting"
+
+[node name="Label" type="Label" parent="optionlabelsection" unique_id=1228497149]
+layout_mode = 2
+text = "slider setting"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="." unique_id=2116552089]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="valuedisplaysection" type="HBoxContainer" parent="." unique_id=1662730373]
+layout_mode = 2
+
+[node name="value" type="Label" parent="valuedisplaysection" unique_id=411419151]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_nsq4n")
+text = "50"
+horizontal_alignment = 2
+
+[node name="editingsection" type="HBoxContainer" parent="." unique_id=1896774072]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="editingsection" unique_id=859599541]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+rounded = true
+scrollable = false
+
+[node name="Control2" type="Control" parent="." unique_id=2145118848]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="buttonsection" type="HBoxContainer" parent="." unique_id=2070322917]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="buttonsection" unique_id=1078681852]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+text = "randomize"

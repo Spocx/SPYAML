@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://crhnxaj4qg3il"]
+
+[ext_resource type="Script" uid="uid://dp62slfglei1e" path="res://option_objects/range_option.gd" id="1_q73o7"]
+[ext_resource type="PackedScene" uid="uid://lhee8cu3gw2j" path="res://tooltip_ball.tscn" id="1_xqsoy"]
+
+[node name="RangeOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("slider", "value_label", "randomize_button", "optionlabel", "tooltip")]
+theme_override_constants/separation = 16
+script = ExtResource("1_q73o7")
+slider = NodePath("HBoxContainer/HSlider")
+value_label = NodePath("HBoxContainer/value")
+randomize_button = NodePath("Button")
+optionlabel = NodePath("optionlabel")
+tooltip = NodePath("optionlabel/tooltip_ball")
+
+[node name="optionlabel" type="HBoxContainer" parent="." unique_id=464737206]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="optionlabel" unique_id=373896103 instance=ExtResource("1_xqsoy")]
+layout_mode = 2
+tooltip = "this is a slider setting"
+
+[node name="Label" type="Label" parent="optionlabel" unique_id=1228497149]
+layout_mode = 2
+text = "slider setting"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1840879967]
+layout_mode = 2
+
+[node name="value" type="Label" parent="HBoxContainer" unique_id=411419151]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "50"
+horizontal_alignment = 2
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer" unique_id=859599541]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+rounded = true
+
+[node name="Button" type="Button" parent="." unique_id=1078681852]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+text = "randomize"

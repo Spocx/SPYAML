@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://w8748pip2m7w"]
+
+[ext_resource type="Script" uid="uid://chlbto4q5x4od" path="res://foldablecustom.gd" id="1_sloht"]
+[ext_resource type="Texture2D" uid="uid://crd6bv85k4us" path="res://foldable_arrow_closed.png" id="2_e82lp"]
+[ext_resource type="Texture2D" uid="uid://ol6mfwjtm5ba" path="res://foldable_arrow_open.png" id="2_sree7"]
+[ext_resource type="StyleBox" uid="uid://cr0mgegy8222a" path="res://themes/foldablecustom_default.tres" id="4_7l0fd"]
+[ext_resource type="StyleBox" uid="uid://b5dc66rf14djl" path="res://themes/foldablecustom_default_hoverpress.tres" id="5_4ybjs"]
+[ext_resource type="FontFile" uid="uid://gh4we85kr00f" path="res://fonts/Inter_18pt-Bold.ttf" id="6_755rc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ybjs"]
+
+[node name="FoldableCustom" type="VBoxContainer" unique_id=278162043]
+offset_right = 509.0
+offset_bottom = 1027.0
+theme_override_constants/separation = 0
+script = ExtResource("1_sloht")
+icon_open = ExtResource("2_sree7")
+icon_closed = ExtResource("2_e82lp")
+color_closed = Color(0.8627451, 0.8627451, 0.87058824, 1)
+color_open = Color(0.79607844, 0.6509804, 0.96862745, 1)
+
+[node name="Button" type="Button" parent="." unique_id=1677156309]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.8627451, 0.8627451, 0.87058824, 1)
+theme_override_colors/font_focus_color = Color(0.8627451, 0.8627451, 0.87058824, 1)
+theme_override_colors/font_pressed_color = Color(0.8627451, 0.8627451, 0.87058824, 1)
+theme_override_colors/font_hover_color = Color(0.8627451, 0.8627451, 0.87058824, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.8627451, 0.8627451, 0.87058824, 1)
+theme_override_styles/normal = ExtResource("4_7l0fd")
+theme_override_styles/pressed = ExtResource("5_4ybjs")
+theme_override_styles/hover = ExtResource("5_4ybjs")
+theme_override_styles/disabled = ExtResource("4_7l0fd")
+theme_override_styles/focus = ExtResource("4_7l0fd")
+text = " "
+icon = ExtResource("2_e82lp")
+alignment = 0
+expand_icon = true
+
+[node name="Label" type="Label" parent="Button" unique_id=1934217218]
+modulate = Color(0.8627451, 0.8627451, 0.87058824, 1)
+layout_mode = 0
+offset_left = 19.0
+offset_right = 82.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("6_755rc")
+text = "foldable"
+
+[node name="folderanim" type="ScrollContainer" parent="." unique_id=1173293643]
+clip_children = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4ybjs")
+vertical_scroll_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="folderanim" unique_id=790081638]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="folderanim/HBoxContainer" unique_id=478614548]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.5764706, 0.6, 0.69803923, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="folderanim/HBoxContainer" unique_id=80702115]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="folderanim/HBoxContainer/MarginContainer" unique_id=1079031639]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="folderanim/HBoxContainer" unique_id=1581004292]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.5764706, 0.6, 0.69803923, 1)
