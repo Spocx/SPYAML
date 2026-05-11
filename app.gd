@@ -149,10 +149,10 @@ func _open_yaml_file(_path : String):
 	current_yaml_template_dict = SPYaml.read(_path)
 	
 	if(!current_yaml_template_dict.is_empty()):
+		print(current_yaml_template_dict)
 		_enable_save_button()
 		_set_topbar_items()
 		_create_options()
-		#print(current_yaml_template_dict)
 	pass
 
 func _create_options():
