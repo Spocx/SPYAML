@@ -25,7 +25,8 @@ var dictionary_name : String = ""
 func set_option_name(_name : String):
 	dictionary_name = _name
 	var display_name = _name.replace('_',' ')
-	display_name = Utilities.camel_to_words(display_name)
+	display_name = Utilities.humanize_identifier(display_name)
+	#display_name = Utilities.camel_to_words(display_name)
 	option_name_label.text = display_name
 	set_label_width()
 	

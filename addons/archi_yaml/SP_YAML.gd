@@ -47,7 +47,7 @@ static func read(path : String) -> Dictionary:
 			continue 
 		
 		# split parts 
-		var parts: PackedStringArray = split_top_level(line,':')
+		var parts: PackedStringArray = split_yaml_line(line)
 		var key: String = parts[0].strip_edges()
 		
 		#if key is game, save game name
@@ -94,7 +94,7 @@ static func parse_value(value : String) -> Variant:
 		var stripped_input = stripped_value.substr(1,stripped_value.length()-2)
 		var items : PackedStringArray = split_top_level(stripped_input)
 		for i in items:
-			var sections = split_top_level_once(i, ":")
+			var sections = split_yaml_line(i)
 			var key = sections[0]
 			return_dict[key] = parse_value(sections[1].strip_edges())
 		return return_dict
@@ -150,10 +150,20 @@ static func parse_option(file: FileAccess, _current_indent : int) -> Dictionary:
 			
 			else:
 				#var parts: PackedStringArray = line.split(':',false,1) 
-				var parts: PackedStringArray = split_top_level(line,':')
+				var parts: PackedStringArray = split_yaml_line(line)
+				#print(parts)
 				var key: String = parts[0].strip_edges() 
 				
-				if parts.size() == 2: 
+				var save_pos = file.get_position()
+				var next_line = file.get_line().strip_edges()
+				file.seek(save_pos)
+				if next_line.begins_with('-') and !next_line.ends_with(':'):
+					if(current_header_section != ""):
+						dict["value"]["list"] = parse_list(file)
+					else:
+						dict["list"] = parse_list(file)
+
+				elif parts.size() == 2: 
 					if(current_header_section != ""):
 						dict["value"][key] = parse_value(parts[1])
 					else:
@@ -169,6 +179,24 @@ static func parse_option(file: FileAccess, _current_indent : int) -> Dictionary:
 		dict["description"] = description 
 	return dict 
 	
+static func parse_list(file: FileAccess) -> Array[String]:
+	var list : Array[String] = []
+	var prev_pos : int = 0 
+	
+	while !file.eof_reached(): 
+		prev_pos = file.get_position() 
+		var line : String = file.get_line().strip_edges() 
+		
+		if !line.begins_with('-'):
+			file.seek(prev_pos)
+			break
+		
+		var value = line.substr(1,line.length()).strip_edges()
+		list.push_back(value)
+	
+	return list
+	pass
+
 static func get_indent_info(line: String) -> int: 
 	var indent = 0 
 	
@@ -240,3 +268,42 @@ static func split_top_level_once(text: String, delimiter: String = ":") -> Packe
 			]
 
 	return [text]
+
+static func split_yaml_line(line: String) -> PackedStringArray:
+	var in_single := false
+	var in_double := false
+
+	for i in range(line.length()):
+		var c = line[i]
+
+		# Toggle single quotes
+		if c == "'" and not in_double:
+			# Ignore apostrophes inside words
+			var prev_is_letter := false
+			var next_is_letter := false
+
+			if i > 0:
+				prev_is_letter = is_letter(line[i - 1])
+
+			if i < line.length() - 1:
+				next_is_letter = is_letter(line[i + 1])
+
+			var is_apostrophe = prev_is_letter and next_is_letter
+
+			if not is_apostrophe:
+				in_single = !in_single
+
+		# Toggle double quotes
+		elif c == '"' and not in_single:
+			in_double = !in_double
+
+		# Found separator outside quotes
+		elif c == ":" and not in_single and not in_double:
+			if line.substr(i + 1).strip_edges() != "":
+				return [line.substr(0, i).strip_edges(), line.substr(i + 1).strip_edges()]
+			else:
+				return [line.substr(0, i).strip_edges()]
+	return []
+
+static func is_letter(c: String) -> bool:
+	return c.unicode_at(0) >= 65 and c.unicode_at(0) <= 122

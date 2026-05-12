@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ciohpm7j11hvp"]
+
+[ext_resource type="StyleBox" uid="uid://ch5i2tw46m878" path="res://themes/yamlselectbutton.tres" id="1_10yun"]
+[ext_resource type="Script" uid="uid://b2nkbr3umqn6w" path="res://yaml_select_button.gd" id="2_bxopw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgcu8"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.20686004, 0.20688966, 0.28751546, 1)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+corner_detail = 4
+shadow_color = Color(0, 0, 0, 0.005)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jq15t"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.13707149, 0.1370891, 0.19899347, 1)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+corner_detail = 4
+shadow_color = Color(0, 0, 0, 0.005)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[node name="YAMLSelectButton" type="Button" unique_id=1293420072]
+custom_minimum_size = Vector2(0, 30)
+mouse_filter = 1
+theme_override_constants/h_separation = 0
+theme_override_styles/normal = ExtResource("1_10yun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rgcu8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jq15t")
+script = ExtResource("2_bxopw")
+
+[node name="Label" type="Label" parent="." unique_id=1097455618]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Donkey kong country 3 crazy ride"
+clip_text = true

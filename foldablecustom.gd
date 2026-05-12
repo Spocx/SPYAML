@@ -48,7 +48,39 @@ func _process(delta: float) -> void:
 func add_section_child(child):
 	content_list.add_child(child)
 	child_options.push_back(child)
-	
+
+func get_widest_label() -> float:
+	var widest_label : float = 0
+	for option in child_options:
+		widest_label = max(widest_label,option.option_label_area.size.x)
+	return widest_label
+
+func get_widest_value() -> float:
+	var widest_value : float = 0
+	for option in child_options:
+		widest_value = max(widest_value,option.value_display_area.size.x)
+	return widest_value
+
+func get_widest_edit() -> float:
+	var widest_edit : float = 0
+	for option in child_options:
+		widest_edit = max(widest_edit,option.editing_area.size.x)
+	return widest_edit
+
+func get_widest_button() -> float:
+	var widest_button : float = 0
+	for option in child_options:
+		widest_button = max(widest_button,option.button_area.size.x)
+	return widest_button
+
+func setSizes(_label : float, _value : float, _edit : float, _button : float):
+	for option in child_options:
+		option.option_label_area.custom_minimum_size.x = _label
+		option.value_display_area.custom_minimum_size.x = _value
+		option.editing_area.custom_minimum_size.x = _edit
+		option.button_area.custom_minimum_size.x = _button
+	pass
+
 func sizeLabels():
 	var widest_label : float = 0
 	var widest_value : float = 0

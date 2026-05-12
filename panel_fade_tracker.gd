@@ -1,6 +1,6 @@
 extends TextureRect
 
-@export var container : PanelContainer
+@export var container : Control
 @export var scroll_container : ScrollContainer
 @export var is_top : bool = true
 @export var max_size : float = 48

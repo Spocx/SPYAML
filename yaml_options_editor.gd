@@ -29,37 +29,51 @@ func createSection(_name : String):
 
 func createOptions(options_dict: Dictionary):
 	for key in options_dict:
-		var type : OptionParent.TYPE = get_option_type(options_dict[key])
-		var option : OptionParent
-		match type:
-			OptionParent.TYPE.TOGGLE:
-				option = TOGGLE_OPTION.instantiate()
-				pass
-			OptionParent.TYPE.CHOICE:
-				pass
-			OptionParent.TYPE.RANGE:
-				option = RANGE_OPTION.instantiate()
-				pass
-			OptionParent.TYPE.LIST:
-				pass
-			OptionParent.TYPE.DICTIONARY:
-				pass
-			OptionParent.TYPE.UNSUPORTED:
-				pass
-				
-		if option != null:
-			option.init(options_dict[key],key)
-			addOptionToSection(option,options_dict[key]["section"])
-			setOptionCommonValues(option,key)
-		#print(key + " | " + options_dict[key]["section"] + " | " + OptionParent.TYPE.keys()[type])
+		if options_dict[key] is Dictionary:
+			var type : OptionParent.TYPE = get_option_type(options_dict[key])
+			var option : OptionParent
+			match type:
+				OptionParent.TYPE.TOGGLE:
+					option = TOGGLE_OPTION.instantiate()
+					pass
+				OptionParent.TYPE.CHOICE:
+					pass
+				OptionParent.TYPE.RANGE:
+					option = RANGE_OPTION.instantiate()
+					pass
+				OptionParent.TYPE.LIST:
+					pass
+				OptionParent.TYPE.DICTIONARY:
+					pass
+				OptionParent.TYPE.UNSUPORTED:
+					pass
+					
+			if option != null:
+				option.init(options_dict[key],key)
+				addOptionToSection(option,options_dict[key]["section"])
+				setOptionCommonValues(option,key)
+			#print(key + " | " + options_dict[key]["section"] + " | " + OptionParent.TYPE.keys()[type])
 	
 	call_deferred("section_option_labels_resize")
 	call_deferred("openFirstSection")
 
 func section_option_labels_resize():
+	#for key in sections.keys():
+	#	sections[key].sizeLabels()
+	
+	var widest_label : float = 0
+	var widest_value : float = 0
+	var widest_edit : float = 0
+	var widest_button : float = 0
 	for key in sections.keys():
-		sections[key].sizeLabels()
-	pass
+		widest_label = max(widest_label,sections[key].get_widest_label())
+		widest_value = max(widest_value,sections[key].get_widest_value())
+		widest_edit = max(widest_edit,sections[key].get_widest_edit())
+		widest_button = max(widest_button,sections[key].get_widest_button())
+		
+	for key in sections.keys():
+		sections[key].setSizes(widest_label,widest_value,widest_edit,widest_button)
+
 
 func setOptionCommonValues(_option : OptionParent, _name):
 	_option.set_option_name(_name)

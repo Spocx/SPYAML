@@ -12,8 +12,10 @@
 [ext_resource type="FontFile" uid="uid://b1hgrm6w5qid6" path="res://fonts/0xProtoNerdFontMono-Regular.ttf" id="6_a37lv"]
 [ext_resource type="Script" uid="uid://dsmrp1iillosg" path="res://optionscroll.gd" id="6_atqe7"]
 [ext_resource type="Script" uid="uid://cshum22bxo23o" path="res://yamlsavedtotext.gd" id="7_a37lv"]
+[ext_resource type="Script" uid="uid://c21xj4aasv833" path="res://yaml_search_bar.gd" id="7_gtgpg"]
 [ext_resource type="Script" uid="uid://vxqvanxs6maj" path="res://panel_fade_tracker.gd" id="7_x8rub"]
 [ext_resource type="Script" uid="uid://bv8bimmx8ve5n" path="res://yaml_options_editor.gd" id="8_7iiwk"]
+[ext_resource type="Script" uid="uid://13mbb1kb6dsh" path="res://yaml_selector.gd" id="8_jq15t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtgpg"]
 content_margin_left = 0.0
@@ -39,6 +41,48 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra7kh"]
+bg_color = Color(0.09019608, 0.09019608, 0.13725491, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjbw5"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.09019608, 0.09019608, 0.13725491, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjbw5"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_x8rub"]
+color = Color(0, 0, 0, 0.4)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jq15t"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nee2x"]
+color = Color(0, 0, 0, 0.4)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5oejy"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a37lv"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -63,20 +107,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 4
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_nee2x"]
-color = Color(0, 0, 0, 0.4)
-grow_begin = 0.0
-grow_end = 0.0
-thickness = 2
-vertical = true
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atqe7"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5oejy"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
@@ -99,12 +130,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 4
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_x8rub"]
-color = Color(0, 0, 0, 0.4)
-grow_begin = 0.0
-grow_end = 0.0
-thickness = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8rub"]
 content_margin_left = 0.0
@@ -141,7 +166,7 @@ corner_detail = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7vdx"]
 
-[node name="App" type="Control" unique_id=901755997 node_paths=PackedStringArray("template_folder_popup", "manual_yaml_select_popup", "save_yaml_popup", "template_select", "load_template_button", "yaml_folder_warning", "locate_template_folder_button", "manual_locate_button", "save_yaml_button", "load_yaml_to_start_panel", "yaml_saved_to_text", "game_name_label", "requirements_label", "requirements_tooltip", "description_box", "options_creator", "tooltip") groups=["app"]]
+[node name="App" type="Control" unique_id=901755997 node_paths=PackedStringArray("template_folder_popup", "manual_yaml_select_popup", "save_yaml_popup", "template_selector", "load_template_button", "yaml_folder_warning", "locate_template_folder_button", "manual_locate_button", "save_yaml_button", "save_yaml_template_button", "load_yaml_to_start_panel", "yaml_saved_to_text", "game_name_label", "requirements_label", "requirements_tooltip", "description_box", "options_creator", "tooltip") groups=["app"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,12 +179,13 @@ script = ExtResource("2_qbwvd")
 template_folder_popup = NodePath("template folder popup")
 manual_yaml_select_popup = NodePath("manual apworld select popup")
 save_yaml_popup = NodePath("save yaml popup")
-template_select = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/template select")
+template_selector = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer/YAMLSelector")
 load_template_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/load template")
 yaml_folder_warning = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/apworld_folder_warning")
 locate_template_folder_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/locate template folder")
-manual_locate_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer/MarginContainer/manual apworld file select/manual locate")
+manual_locate_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/manual locate")
 save_yaml_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/save yaml button")
+save_yaml_template_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/save yaml template")
 load_yaml_to_start_panel = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay")
 yaml_saved_to_text = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/yamlsavedtotext")
 game_name_label = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit/RichTextLabel")
@@ -235,6 +261,7 @@ theme_override_constants/separation = 16
 
 [node name="MarginContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items" unique_id=20422870]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7iiwk")
 
 [node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer" unique_id=414923820]
@@ -271,6 +298,7 @@ theme_override_fonts/font = ExtResource("5_7iiwk")
 text = "Template YAML"
 
 [node name="apworld_folder_warning" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=2024713597]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9529412, 0.54509807, 0.65882355, 1)
 theme_override_constants/line_spacing = 0
@@ -280,10 +308,114 @@ text = "no default yaml folder selected or no yaml files found in selected folde
 autowrap_mode = 2
 
 [node name="template select" type="OptionButton" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=562809723]
+visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(0.79607844, 0.6509804, 0.96862745, 1)
 disabled = true
 clip_text = true
 fit_to_longest_item = false
+
+[node name="Panel" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1605912159]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ra7kh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel" unique_id=2146768095]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LineEdit" type="LineEdit" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=611366771 node_paths=PackedStringArray("item_container")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7iiwk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gjbw5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjbw5")
+placeholder_text = "search"
+context_menu_enabled = false
+emoji_menu_enabled = false
+clear_button_enabled = true
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+script = ExtResource("7_gtgpg")
+item_container = NodePath("../HBoxContainer/PanelContainer/ScrollContainer/YAMLSelector")
+
+[node name="HSeparator3" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=1242309972]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=368923470]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=1106811117]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jq15t")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1770484001]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="YAMLSelector" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer" unique_id=1131132170]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+script = ExtResource("8_jq15t")
+
+[node name="fadebartop" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=221880577 node_paths=PackedStringArray("container", "scroll_container")]
+modulate = Color(0.05490196, 0.05490196, 0.08235294, 1)
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("5_v7vdx")
+expand_mode = 1
+script = ExtResource("7_x8rub")
+container = NodePath("../ScrollContainer/YAMLSelector")
+scroll_container = NodePath("../../../../../../../../../../../../Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer")
+
+[node name="fadebarbottom" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1270292462 node_paths=PackedStringArray("container", "scroll_container")]
+modulate = Color(0.05490196, 0.05490196, 0.08235294, 1)
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+texture = ExtResource("5_v7vdx")
+expand_mode = 1
+flip_v = true
+script = ExtResource("7_x8rub")
+container = NodePath("../ScrollContainer/YAMLSelector")
+scroll_container = NodePath("../ScrollContainer")
+is_top = false
+
+[node name="VSeparator2" type="VSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=805809981]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nee2x")
+
+[node name="scroll" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=972399699]
+custom_minimum_size = Vector2(10, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5oejy")
+
+[node name="optionscroll" type="VScrollBar" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/scroll" unique_id=288490778 node_paths=PackedStringArray("scroll_container", "cparent", "seperator")]
+layout_mode = 2
+size_flags_horizontal = 1
+max_value = 1000.0
+script = ExtResource("6_atqe7")
+scroll_container = NodePath("../../PanelContainer/ScrollContainer")
+cparent = NodePath("..")
+seperator = NodePath("../../VSeparator2")
+
+[node name="HSeparator4" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=255025851]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
 
 [node name="load template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1618772526]
 custom_minimum_size = Vector2(0, 30)
@@ -292,16 +424,38 @@ theme_override_fonts/font = ExtResource("6_7iiwk")
 disabled = true
 text = "load YAML"
 
-[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=593193173]
-layout_mode = 2
-
 [node name="locate template folder" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1882936438]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7iiwk")
 text = "locate template folder"
 
+[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=593193173]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1032629261]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer2" unique_id=259163291 instance=ExtResource("4_nee2x")]
+layout_mode = 2
+tooltip = "use this to manually select a [color=#a6e3a1]YAML[/color] file
+
+it's also possible to [color=#a6e3a1]drag and drop a YAML file onto the application window directly[/color]."
+
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer2" unique_id=529816475]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7iiwk")
+text = "Manual YAML locate"
+
+[node name="manual locate" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=2138666871]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7iiwk")
+text = "locate YAML"
+
 [node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items" unique_id=32325258]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_a37lv")
 
@@ -318,26 +472,6 @@ theme_override_constants/margin_bottom = 5
 [node name="manual apworld file select" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer/MarginContainer" unique_id=225429162]
 layout_mode = 2
 theme_override_constants/separation = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer/MarginContainer/manual apworld file select" unique_id=1032629261]
-layout_mode = 2
-
-[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer/MarginContainer/manual apworld file select/HBoxContainer" unique_id=259163291 instance=ExtResource("4_nee2x")]
-layout_mode = 2
-tooltip = "use this to manually select a [color=#a6e3a1]YAML[/color] file
-
-it's also possible to [color=#a6e3a1]drag and drop a YAML file onto the application window directly[/color]."
-
-[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer/MarginContainer/manual apworld file select/HBoxContainer" unique_id=529816475]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_7iiwk")
-text = "Manual YAML locate"
-
-[node name="manual locate" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer/MarginContainer/manual apworld file select" unique_id=2138666871]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_7iiwk")
-text = "locate YAML"
 
 [node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=31617735]
 layout_mode = 2
@@ -372,7 +506,9 @@ layout_mode = 2
 layout_mode = 2
 tooltip = "use this to export your [color=#a6e3a1]YAML[/color] settings file
 
-[color=#fab387]Player name will be set to save file name![/color]"
+[color=#a6e3a1]Save as template[/color]: will save your settings as a new template that you can open with this editor
+
+[color=#a6e3a1]Save YAML file[/color]: will export your yaml to a compacted uncommented file to be used for game generation. [color=#fab387]Player name will be set to save file name![/color]"
 
 [node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=133554524]
 layout_mode = 2
@@ -389,6 +525,12 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 script = ExtResource("7_a37lv")
+
+[node name="save yaml template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=994435136]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+disabled = true
+text = "save as template"
 
 [node name="save yaml button" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=769243463]
 custom_minimum_size = Vector2(0, 30)

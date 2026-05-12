@@ -9,12 +9,14 @@ const static_players_dir : String = "C:/ProgramData/Archipelago/Players"
 @export var save_yaml_popup: FileDialog
 
 @export_group("ui elements")
-@export var template_select: OptionButton
+#@export var template_select: OptionButton
+@export var template_selector: YAMLSelector
 @export var load_template_button: Button
 @export var yaml_folder_warning: Label
 @export var locate_template_folder_button: Button
 @export var manual_locate_button: Button
 @export var save_yaml_button: Button
+@export var save_yaml_template_button: Button
 @export var load_yaml_to_start_panel: VBoxContainer
 @export var yaml_saved_to_text : RichTextLabel
 
@@ -102,7 +104,7 @@ func _template_folder_selected(_path):
 	pass
 
 func set_template_buttons_enabled(enabled : bool):
-	template_select.disabled = !enabled
+	#template_select.disabled = !enabled
 	load_template_button.disabled = !enabled
 	if(enabled):
 		yaml_folder_warning.visible = false
@@ -114,13 +116,18 @@ func _attempt_populate_template_select():
 
 	if dir == null:
 		return
-	template_select.clear()
+	
+	#template_select.clear()
+	print("a")
+	template_selector.remove_buttons()
 	dir.list_dir_begin()
 	for f : String in dir.get_files():
 		if f.get_extension() == "yaml":
-			template_select.add_item(f.substr(0,f.length()-f.get_extension().length()-1))
+			template_selector.spawn_button(f.substr(0,f.length()-f.get_extension().length()-1))
+			#template_select.add_item(f.substr(0,f.length()-f.get_extension().length()-1))
 	
-	if template_select.item_count > 0:
+	if template_selector.buttons.size() > 0:
+		template_selector.buttons[0].select_label()
 		set_template_buttons_enabled(true)
 	else:
 		set_template_buttons_enabled(false)
@@ -141,7 +148,7 @@ func _file_dropped(_files):
 	pass
 
 func _load_template_yaml():
-	var _path : String = template_folder_directory+"/"+template_select.get_item_text(template_select.selected)+".yaml"
+	var _path : String = template_folder_directory+"/"+template_selector.selected+".yaml"
 	_open_yaml_file(_path)
 	pass
 
@@ -149,8 +156,11 @@ func _open_yaml_file(_path : String):
 	current_yaml_template_dict = SPYaml.read(_path)
 	
 	if(!current_yaml_template_dict.is_empty()):
-		print(current_yaml_template_dict)
-		_enable_save_button()
+		#print(current_yaml_template_dict)
+		var file = FileAccess.open("user://debugyamltext.txt", FileAccess.WRITE)
+		file.store_line(JSON.stringify(current_yaml_template_dict))
+		file.close()
+		_enable_save_buttons()
 		_set_topbar_items()
 		_create_options()
 	pass
@@ -187,8 +197,9 @@ func _set_requirements_tooltip_items():
 	requirements_tooltip.tooltip = full_string
 
 #region saving
-func _enable_save_button():
+func _enable_save_buttons():
 	save_yaml_button.disabled = false
+	save_yaml_template_button.disabled = false
 
 func _save_yaml_popup():
 	save_yaml_popup.title = "save yaml"
