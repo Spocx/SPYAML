@@ -9,11 +9,16 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ybjs"]
 
-[node name="FoldableCustom" type="VBoxContainer" unique_id=278162043]
+[node name="FoldableCustom" type="VBoxContainer" unique_id=278162043 node_paths=PackedStringArray("button", "content", "content_list", "folderanim", "label")]
 offset_right = 509.0
 offset_bottom = 1027.0
 theme_override_constants/separation = 0
 script = ExtResource("1_sloht")
+button = NodePath("Button")
+content = NodePath("HBoxContainer/folderanim/HBoxContainer/MarginContainer")
+content_list = NodePath("HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content")
+folderanim = NodePath("HBoxContainer/folderanim")
+label = NodePath("Button/Label")
 icon_open = ExtResource("2_sree7")
 icon_closed = ExtResource("2_e82lp")
 color_closed = Color(0.8627451, 0.8627451, 0.87058824, 1)
@@ -46,24 +51,29 @@ offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("6_755rc")
 text = "foldable"
 
-[node name="folderanim" type="ScrollContainer" parent="." unique_id=1173293643]
-clip_children = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=704795906]
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_4ybjs")
-vertical_scroll_mode = 3
+theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="folderanim" unique_id=790081638]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect" type="ColorRect" parent="folderanim/HBoxContainer" unique_id=478614548]
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer" unique_id=478614548]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 mouse_filter = 1
 color = Color(0.5764706, 0.6, 0.69803923, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="folderanim/HBoxContainer" unique_id=80702115]
+[node name="folderanim" type="ScrollContainer" parent="HBoxContainer" unique_id=1173293643]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4ybjs")
+vertical_scroll_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/folderanim" unique_id=790081638]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/folderanim/HBoxContainer" unique_id=80702115]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -72,10 +82,10 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 20
 
-[node name="Content" type="VBoxContainer" parent="folderanim/HBoxContainer/MarginContainer" unique_id=1079031639]
+[node name="Content" type="VBoxContainer" parent="HBoxContainer/folderanim/HBoxContainer/MarginContainer" unique_id=1079031639]
 layout_mode = 2
 
-[node name="ColorRect2" type="ColorRect" parent="folderanim/HBoxContainer" unique_id=1581004292]
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer" unique_id=1581004292]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 mouse_filter = 1

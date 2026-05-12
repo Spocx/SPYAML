@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://vxqvanxs6maj" path="res://panel_fade_tracker.gd" id="7_x8rub"]
 [ext_resource type="Script" uid="uid://bv8bimmx8ve5n" path="res://yaml_options_editor.gd" id="8_7iiwk"]
 [ext_resource type="Script" uid="uid://13mbb1kb6dsh" path="res://yaml_selector.gd" id="8_jq15t"]
+[ext_resource type="FontFile" uid="uid://gh4we85kr00f" path="res://fonts/Inter_18pt-Bold.ttf" id="20_iho0w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtgpg"]
 content_margin_left = 0.0
@@ -845,7 +846,9 @@ script = ExtResource("4_d7sxu")
 clip_contents = false
 layout_mode = 2
 mouse_filter = 2
+theme_override_fonts/bold_font = ExtResource("20_iho0w")
 theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v7vdx")
 bbcode_enabled = true
 text = "This section scans [color=#a6e3a1]YAML[/color] files in your selected template folder. folder can be selected with the [color=#fab387]locate template folder[/color] button below

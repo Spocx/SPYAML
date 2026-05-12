@@ -3,6 +3,9 @@ class_name YamlOptionsCreator
 
 const RANGE_OPTION = preload("res://option_objects/range_option.tscn")
 const TOGGLE_OPTION = preload("res://option_objects/toggle_option.tscn")
+const CHOICE_OPTION = preload("res://option_objects/choice_option.tscn")
+const LIST_OPTION = preload("res://option_objects/list_option.tscn")
+const DICTIONARY_OPTION = preload("res://option_objects/dictionary_option.tscn")
 
 @onready var sections_parent: VBoxContainer = $ScrollContainer/PanelContainer/sections
 @onready var h_separator: HSeparator = $ScrollContainer/PanelContainer/sections/HSeparator
@@ -37,13 +40,16 @@ func createOptions(options_dict: Dictionary):
 					option = TOGGLE_OPTION.instantiate()
 					pass
 				OptionParent.TYPE.CHOICE:
+					option = CHOICE_OPTION.instantiate()
 					pass
 				OptionParent.TYPE.RANGE:
 					option = RANGE_OPTION.instantiate()
 					pass
 				OptionParent.TYPE.LIST:
+					option = LIST_OPTION.instantiate()
 					pass
 				OptionParent.TYPE.DICTIONARY:
+					option = DICTIONARY_OPTION.instantiate()
 					pass
 				OptionParent.TYPE.UNSUPORTED:
 					pass
@@ -54,8 +60,13 @@ func createOptions(options_dict: Dictionary):
 				setOptionCommonValues(option,key)
 			#print(key + " | " + options_dict[key]["section"] + " | " + OptionParent.TYPE.keys()[type])
 	
+	call_deferred("orderSectionOptions")
 	call_deferred("section_option_labels_resize")
 	call_deferred("openFirstSection")
+
+func orderSectionOptions():
+	for key in sections.keys():
+		sections[key].reorder_children()
 
 func section_option_labels_resize():
 	#for key in sections.keys():
@@ -98,18 +109,19 @@ func get_option_type(option_data : Dictionary) -> OptionParent.TYPE:
 			return OptionParent.TYPE.RANGE
 	
 	var is_valid_choice_option = true
+	var count_50 : int = 0
 	for key in option_data["value"].keys():
-		if option_data["value"][key] is Dictionary:
+		if option_data["value"][key] is not int:
 			is_valid_choice_option = false
 			break
-		if option_data["value"][key] is Array:
-			is_valid_choice_option = false
-			break
+		
+		if option_data["value"][key] == 50:
+			count_50 += 1
 		pass
-	if is_valid_choice_option:
+	if is_valid_choice_option and count_50 == 1:
 		return OptionParent.TYPE.CHOICE
 	
-	return OptionParent.TYPE.UNSUPORTED
+	return OptionParent.TYPE.DICTIONARY
 
 
 func dict_has_values(dict : Dictionary, values: Array[String]) -> bool:

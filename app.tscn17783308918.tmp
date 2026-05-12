@@ -1,0 +1,906 @@
+[gd_scene format=3 uid="uid://cs4iwl7ephmwf"]
+
+[ext_resource type="Theme" uid="uid://ckrojjvcs3d8b" path="res://themes/theme.tres" id="1_j6dmo"]
+[ext_resource type="Script" uid="uid://16ujdkhtaymi" path="res://app.gd" id="2_qbwvd"]
+[ext_resource type="Texture2D" uid="uid://dsfw7uxuj2egd" path="res://logo.png" id="3_i4801"]
+[ext_resource type="Script" uid="uid://b1uaihtylngbh" path="res://tooltip.gd" id="4_d7sxu"]
+[ext_resource type="PackedScene" uid="uid://lhee8cu3gw2j" path="res://tooltip_ball.tscn" id="4_nee2x"]
+[ext_resource type="Texture2D" uid="uid://dvo5862ycjbjk" path="res://dragndrop.png" id="5_5oejy"]
+[ext_resource type="FontFile" uid="uid://do0ne2iufvx6a" path="res://fonts/0xProtoNerdFontMono-Bold.ttf" id="5_7iiwk"]
+[ext_resource type="Texture2D" uid="uid://drmti28thl6uv" path="res://fade.png" id="5_v7vdx"]
+[ext_resource type="FontFile" uid="uid://rlpteggq4s3u" path="res://fonts/Inter_18pt-Regular.ttf" id="6_7iiwk"]
+[ext_resource type="FontFile" uid="uid://b1hgrm6w5qid6" path="res://fonts/0xProtoNerdFontMono-Regular.ttf" id="6_a37lv"]
+[ext_resource type="Script" uid="uid://dsmrp1iillosg" path="res://optionscroll.gd" id="6_atqe7"]
+[ext_resource type="Script" uid="uid://cshum22bxo23o" path="res://yamlsavedtotext.gd" id="7_a37lv"]
+[ext_resource type="Script" uid="uid://c21xj4aasv833" path="res://yaml_search_bar.gd" id="7_gtgpg"]
+[ext_resource type="Script" uid="uid://vxqvanxs6maj" path="res://panel_fade_tracker.gd" id="7_x8rub"]
+[ext_resource type="Script" uid="uid://bv8bimmx8ve5n" path="res://yaml_options_editor.gd" id="8_7iiwk"]
+[ext_resource type="Script" uid="uid://13mbb1kb6dsh" path="res://yaml_selector.gd" id="8_jq15t"]
+[ext_resource type="PackedScene" uid="uid://w8748pip2m7w" path="res://foldable_custom.tscn" id="15_rgcu8"]
+[ext_resource type="PackedScene" uid="uid://bfcl57xfvvxtn" path="res://option_objects/list_option.tscn" id="16_rgcu8"]
+[ext_resource type="FontFile" uid="uid://gh4we85kr00f" path="res://fonts/Inter_18pt-Bold.ttf" id="20_iho0w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtgpg"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7iiwk"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a37lv"]
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 4.0
+bg_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra7kh"]
+bg_color = Color(0.09019608, 0.09019608, 0.13725491, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjbw5"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.09019608, 0.09019608, 0.13725491, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjbw5"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_x8rub"]
+color = Color(0, 0, 0, 0.4)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jq15t"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nee2x"]
+color = Color(0, 0, 0, 0.4)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5oejy"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a37lv"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra7kh"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtgpg"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.05490196, 0.05490196, 0.08235294, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atqe7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_acaik"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jndut"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8rub"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_a37lv"]
+content_margin_left = 4.0
+content_margin_top = 5.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(0.078431375, 0.078431375, 0.12156863, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nee2x"]
+content_margin_left = 14.0
+content_margin_top = 14.0
+content_margin_right = 14.0
+content_margin_bottom = 14.0
+bg_color = Color(0.05490196, 0.05490196, 0.08235294, 0.94509804)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.05490196, 0.05490196, 0.08235294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7vdx"]
+
+[node name="App" type="Control" unique_id=901755997 node_paths=PackedStringArray("template_folder_popup", "manual_yaml_select_popup", "save_yaml_popup", "template_selector", "load_template_button", "yaml_folder_warning", "locate_template_folder_button", "manual_locate_button", "save_yaml_button", "save_yaml_template_button", "load_yaml_to_start_panel", "yaml_saved_to_text", "game_name_label", "requirements_label", "requirements_tooltip", "description_box", "options_creator", "tooltip") groups=["app"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_j6dmo")
+script = ExtResource("2_qbwvd")
+template_folder_popup = NodePath("template folder popup")
+manual_yaml_select_popup = NodePath("manual apworld select popup")
+save_yaml_popup = NodePath("save yaml popup")
+template_selector = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer/YAMLSelector")
+load_template_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/load template")
+yaml_folder_warning = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/apworld_folder_warning")
+locate_template_folder_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/locate template folder")
+manual_locate_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/manual locate")
+save_yaml_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/save yaml button")
+save_yaml_template_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/save yaml template")
+load_yaml_to_start_panel = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay")
+yaml_saved_to_text = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/yamlsavedtotext")
+game_name_label = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit/RichTextLabel")
+requirements_label = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit2/RichTextLabel")
+requirements_tooltip = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit2/RichTextLabel/tooltip_ball")
+description_box = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer2/TextEdit")
+options_creator = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options")
+tooltip = NodePath("bgpanel/tooltip")
+
+[node name="bg" type="ColorRect" parent="." unique_id=1088254845]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09019608, 0.09019608, 0.13725491, 1)
+
+[node name="bgpanel" type="Panel" parent="." unique_id=1987362296]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="spacer" type="MarginContainer" parent="bgpanel" unique_id=583683196]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="content" type="HBoxContainer" parent="bgpanel/spacer" unique_id=820723631]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="left bar" type="PanelContainer" parent="bgpanel/spacer/content" unique_id=1496822483]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="spacer" type="MarginContainer" parent="bgpanel/spacer/content/left bar" unique_id=2074196224]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="content" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer" unique_id=432517880]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=1281127723]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gtgpg")
+
+[node name="logo" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/PanelContainer" unique_id=1616626193]
+layout_mode = 2
+texture = ExtResource("3_i4801")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="top items" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=259545432]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items" unique_id=20422870]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7iiwk")
+
+[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer" unique_id=414923820]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a37lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer" unique_id=1294338479]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="template options" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer" unique_id=825138829]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=637024806]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer" unique_id=373896103 instance=ExtResource("4_nee2x")]
+layout_mode = 2
+tooltip = "This section scans [color=#a6e3a1]YAML[/color] files in your selected template folder. folder can be selected with the [color=#fab387]locate template folder[/color] button below
+
+by default the generated yaml files are stored in:
+[color=#89dceb]C:\\ProgramData\\Archipelago\\Players\\Templates[/color]. 
+if this folder is found it is set by default but feel free to change it.
+
+[color=#f38ba8]if the templates folder does not exist in your achipelago_install/players folder you likely still need to generate it. you can do this by opening the archipelago launcher -> generate template options. running this command will also open the location where the templates have been generated[/color]"
+
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer" unique_id=9769549]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_7iiwk")
+text = "Template YAML"
+
+[node name="apworld_folder_warning" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=2024713597]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.54509807, 0.65882355, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("6_7iiwk")
+theme_override_font_sizes/font_size = 9
+text = "no default yaml folder selected or no yaml files found in selected folder please reselect using the \"locate template folder\" button"
+autowrap_mode = 2
+
+[node name="template select" type="OptionButton" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=562809723]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79607844, 0.6509804, 0.96862745, 1)
+disabled = true
+clip_text = true
+fit_to_longest_item = false
+
+[node name="Panel" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1605912159]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ra7kh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel" unique_id=2146768095]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LineEdit" type="LineEdit" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=611366771 node_paths=PackedStringArray("item_container")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7iiwk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gjbw5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjbw5")
+placeholder_text = "search"
+context_menu_enabled = false
+emoji_menu_enabled = false
+clear_button_enabled = true
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+script = ExtResource("7_gtgpg")
+item_container = NodePath("../HBoxContainer/PanelContainer/ScrollContainer/YAMLSelector")
+
+[node name="HSeparator3" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=1242309972]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=368923470]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=1106811117]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jq15t")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1770484001]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="YAMLSelector" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer" unique_id=1131132170]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+script = ExtResource("8_jq15t")
+
+[node name="fadebartop" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=221880577 node_paths=PackedStringArray("container", "scroll_container")]
+modulate = Color(0.05490196, 0.05490196, 0.08235294, 1)
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("5_v7vdx")
+expand_mode = 1
+script = ExtResource("7_x8rub")
+container = NodePath("../ScrollContainer/YAMLSelector")
+scroll_container = NodePath("../../../../../../../../../../../../Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer")
+
+[node name="fadebarbottom" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1270292462 node_paths=PackedStringArray("container", "scroll_container")]
+modulate = Color(0.05490196, 0.05490196, 0.08235294, 1)
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+texture = ExtResource("5_v7vdx")
+expand_mode = 1
+flip_v = true
+script = ExtResource("7_x8rub")
+container = NodePath("../ScrollContainer/YAMLSelector")
+scroll_container = NodePath("../ScrollContainer")
+is_top = false
+
+[node name="VSeparator2" type="VSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=805809981]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nee2x")
+
+[node name="scroll" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=972399699]
+custom_minimum_size = Vector2(10, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5oejy")
+
+[node name="optionscroll" type="VScrollBar" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/scroll" unique_id=288490778 node_paths=PackedStringArray("scroll_container", "cparent", "seperator")]
+layout_mode = 2
+size_flags_horizontal = 1
+max_value = 1000.0
+script = ExtResource("6_atqe7")
+scroll_container = NodePath("../../PanelContainer/ScrollContainer")
+cparent = NodePath("..")
+seperator = NodePath("../../VSeparator2")
+
+[node name="HSeparator4" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=255025851]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
+
+[node name="load template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1618772526]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7iiwk")
+disabled = true
+text = "load YAML"
+
+[node name="locate template folder" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1882936438]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7iiwk")
+text = "locate template folder"
+
+[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=593193173]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1032629261]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer2" unique_id=259163291 instance=ExtResource("4_nee2x")]
+layout_mode = 2
+tooltip = "use this to manually select a [color=#a6e3a1]YAML[/color] file
+
+it's also possible to [color=#a6e3a1]drag and drop a YAML file onto the application window directly[/color]."
+
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer2" unique_id=529816475]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7iiwk")
+text = "Manual YAML locate"
+
+[node name="manual locate" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=2138666871]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7iiwk")
+text = "locate YAML"
+
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items" unique_id=32325258]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a37lv")
+
+[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer" unique_id=1338338158]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a37lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer" unique_id=346846601]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="manual apworld file select" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer/MarginContainer" unique_id=225429162]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=31617735]
+layout_mode = 2
+
+[node name="bottombuttons" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=144276551]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons" unique_id=895224588]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ra7kh")
+
+[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer" unique_id=1490187232]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a37lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer" unique_id=950359952]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer" unique_id=192670340]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=912946525]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1988125455 instance=ExtResource("4_nee2x")]
+layout_mode = 2
+tooltip = "use this to export your [color=#a6e3a1]YAML[/color] settings file
+
+[color=#a6e3a1]Save as template[/color]: will save your settings as a new template that you can open with this editor
+
+[color=#a6e3a1]Save YAML file[/color]: will export your yaml to a compacted uncommented file to be used for game generation. [color=#fab387]Player name will be set to save file name![/color]"
+
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=133554524]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7iiwk")
+text = "Export"
+
+[node name="yamlsavedtotext" type="RichTextLabel" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=1133347895]
+clip_contents = false
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("6_7iiwk")
+theme_override_font_sizes/normal_font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_gtgpg")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("7_a37lv")
+
+[node name="save yaml template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=994435136]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+disabled = true
+text = "save as template"
+
+[node name="save yaml button" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=769243463]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+disabled = true
+text = "save YAML file"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=2082096218]
+visible = false
+layout_mode = 2
+
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/HBoxContainer" unique_id=1954223543 instance=ExtResource("4_nee2x")]
+layout_mode = 2
+tooltip = "This editor doesn't use the archipelago codebase, instead it directly parses archipelago YAML files into the editor. this means the editor is not aware of the items or locations for the selected games. as a consequence, options with lists that allow to enable/disable things like items or locations need to be filled in manually without any autocorrect or error check if the item/location actually exists. it's still possibe to edit the values, you just need to know the names of the checks or items you want to fill in."
+
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/HBoxContainer" unique_id=1137822086]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7iiwk")
+text = "Disclaimer"
+
+[node name="VSeparator" type="VSeparator" parent="bgpanel/spacer/content" unique_id=1250065197]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nee2x")
+
+[node name="Panel3" type="PanelContainer" parent="bgpanel/spacer/content" unique_id=294394913]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_atqe7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/Panel3" unique_id=663700448]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="topbar" type="PanelContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer" unique_id=2008716529]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5oejy")
+
+[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar" unique_id=204652709]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer" unique_id=1900396804]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer" unique_id=1446818835]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LineEdit" type="PanelContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer" unique_id=673651035]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_acaik")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit" unique_id=34633175]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_a37lv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jndut")
+bbcode_enabled = true
+text = "Game: [color=cba6f7][/color]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="LineEdit2" type="PanelContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer" unique_id=396940271]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_acaik")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit2" unique_id=336089067]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_a37lv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jndut")
+bbcode_enabled = true
+text = "Requirements: [color=cba6f7][/color]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="tooltip_ball" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit2/RichTextLabel" unique_id=1355051232 instance=ExtResource("4_nee2x")]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -8.0
+offset_right = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer" unique_id=1102909754]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextEdit" type="TextEdit" parent="bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=833486532]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 2
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("6_a37lv")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Description box"
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+empty_selection_clipboard_enabled = false
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="bgpanel/spacer/content/Panel3/VBoxContainer" unique_id=304226160]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
+
+[node name="option area" type="PanelContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer" unique_id=817230538]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5oejy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area" unique_id=1285009457]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="options" type="PanelContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer" unique_id=1604595046]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5oejy")
+script = ExtResource("8_7iiwk")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options" unique_id=1113480402]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+scroll_deadzone = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer" unique_id=1883095334]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x8rub")
+
+[node name="sections" type="VBoxContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer/PanelContainer" unique_id=212370768]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FoldableCustom" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer/PanelContainer/sections" unique_id=278162043 instance=ExtResource("15_rgcu8")]
+layout_mode = 2
+
+[node name="ListOption" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer/PanelContainer/sections/FoldableCustom/folderanim/HBoxContainer/MarginContainer/Content" parent_id_path=PackedInt32Array(278162043, 1079031639) index="0" unique_id=1619787900 instance=ExtResource("16_rgcu8")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer/PanelContainer/sections" unique_id=1388014200]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxLine_a37lv")
+
+[node name="loadYAMLtoStartOverlay" type="VBoxContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options" unique_id=161044208]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay" unique_id=1306760116]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay" unique_id=2002145670]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.17254902, 0.17254902, 0.23137255, 1)
+theme_override_colors/font_shadow_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("5_7iiwk")
+theme_override_font_sizes/font_size = 24
+text = "Load a YAML file to get started"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay" unique_id=812191826]
+self_modulate = Color(0.17254902, 0.17254902, 0.23137255, 1)
+z_index = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_5oejy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay/TextureRect" unique_id=227592804]
+self_modulate = Color(0.07058824, 0.07058824, 0.10980392, 1)
+z_index = -1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_5oejy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay" unique_id=1785904954]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="fadebartop" type="TextureRect" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options" unique_id=840833466 node_paths=PackedStringArray("container", "scroll_container")]
+modulate = Color(0.05490196, 0.05490196, 0.08235294, 1)
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("5_v7vdx")
+expand_mode = 1
+script = ExtResource("7_x8rub")
+container = NodePath("../ScrollContainer/PanelContainer")
+scroll_container = NodePath("../ScrollContainer")
+
+[node name="fadebarbottom" type="TextureRect" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options" unique_id=944110849 node_paths=PackedStringArray("container", "scroll_container")]
+modulate = Color(0.05490196, 0.05490196, 0.08235294, 1)
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+texture = ExtResource("5_v7vdx")
+expand_mode = 1
+flip_v = true
+script = ExtResource("7_x8rub")
+container = NodePath("../ScrollContainer/PanelContainer")
+scroll_container = NodePath("../ScrollContainer")
+is_top = false
+
+[node name="VSeparator2" type="VSeparator" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer" unique_id=1385274928]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nee2x")
+
+[node name="scroll" type="PanelContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer" unique_id=715529777]
+custom_minimum_size = Vector2(15, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5oejy")
+
+[node name="optionscroll" type="VScrollBar" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/scroll" unique_id=324458109 node_paths=PackedStringArray("scroll_container", "cparent", "seperator")]
+layout_mode = 2
+size_flags_horizontal = 1
+max_value = 1000.0
+script = ExtResource("6_atqe7")
+scroll_container = NodePath("../../options/ScrollContainer")
+cparent = NodePath("..")
+seperator = NodePath("../../VSeparator2")
+
+[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/Panel3/VBoxContainer" unique_id=59534908]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
+
+[node name="scroll" type="PanelContainer" parent="bgpanel/spacer/content/Panel3/VBoxContainer" unique_id=820327603]
+custom_minimum_size = Vector2(100, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5oejy")
+
+[node name="HScrollBar" type="HScrollBar" parent="bgpanel/spacer/content/Panel3/VBoxContainer/scroll" unique_id=1271769159 node_paths=PackedStringArray("scroll_container", "cparent", "seperatorh")]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/padding_top = 4
+theme_override_constants/padding_bottom = 5
+script = ExtResource("6_atqe7")
+scroll_container = NodePath("../../option area/HBoxContainer/options/ScrollContainer")
+cparent = NodePath("..")
+seperatorh = NodePath("../../HSeparator")
+is_vertical = false
+
+[node name="HSeparator2" type="HSeparator" parent="bgpanel/spacer/content/Panel3/VBoxContainer" unique_id=1393267954]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
+
+[node name="VSeparator2" type="VSeparator" parent="bgpanel/spacer/content" unique_id=1392955481]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nee2x")
+
+[node name="tooltip" type="PanelContainer" parent="bgpanel" unique_id=1431715880]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -189.0
+offset_right = 419.0
+offset_bottom = -5.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nee2x")
+script = ExtResource("4_d7sxu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="bgpanel/tooltip" unique_id=416737433]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/bold_font = ExtResource("20_iho0w")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v7vdx")
+bbcode_enabled = true
+text = "This section scans [color=#a6e3a1]YAML[/color] files in your selected template folder. folder can be selected with the [color=#fab387]locate template folder[/color] button below
+
+by default the generated yaml files are stored in:
+[color=#89dceb]C:\\ProgramData\\Archipelago\\Players\\Templates[/color]. 
+if this folder is found it is set by default but feel free to change it.
+
+[color=#f38ba8]if the templates folder does not exist in your achipelago_install/players folder you likely still need to generate it. you can do this by opening the archipelago launcher -> generate template options. running this command will also open the location where the templates have been generated[/color]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="template folder popup" type="FileDialog" parent="." unique_id=715036343]
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 2
+size = Vector2i(960, 540)
+theme = ExtResource("1_j6dmo")
+file_mode = 2
+display_mode = 1
+access = 2
+show_hidden_files = true
+
+[node name="manual apworld select popup" type="FileDialog" parent="." unique_id=1664486850]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 2
+size = Vector2i(960, 540)
+theme = ExtResource("1_j6dmo")
+file_mode = 0
+display_mode = 1
+access = 2
+filters = PackedStringArray("*.yaml")
+show_hidden_files = true
+
+[node name="save yaml popup" type="FileDialog" parent="." unique_id=1424367367]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(960, 540)
+theme = ExtResource("1_j6dmo")
+display_mode = 1
+access = 2
+filters = PackedStringArray("*.yaml")
+show_hidden_files = true
+
+[editable path="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer/PanelContainer/sections/FoldableCustom"]

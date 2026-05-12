@@ -13,41 +13,40 @@ func _ready() -> void:
 		customcheckbox.call_deferred("toggle")
 	
 func value_changed(_value : bool):
-	value = bool(_value)
+	value = "true" if _value else "false"
 	if _value:
 		value_label.text = "on"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(166,227,161))
 	else:
 		value_label.text = "off"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(235,160,172))
+	#print(value)
 
-#var enabled_tween : Tween
 func randomize_button_pressed():
-	#if enabled_tween:
-	#	enabled_tween.kill()
-	#enabled_tween = create_tween()
-	#enabled_tween.set_ease(Tween.EASE_OUT)
 	
 	if randomize_button.button_pressed:
 		customcheckbox.set_enabled(false)
-		#enabled_tween.tween_property(value_label,"modulate:a",0.3,0.1)
 		value_label.text = "random"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(137,220,235))
 	else:
 		customcheckbox.set_enabled(true)
-		#enabled_tween.tween_property(value_label,"modulate:a",1,0.1)
-		value_changed(value)
+		value_changed(customcheckbox.on)
+	
+	print(get_value())
 
 func create_tooltip():
 	var tooltip_desc : String = description
-	tooltip.tooltip = tooltip_desc
+	attempt_set_url(tooltip_desc)
+	tooltip.tooltip = Utilities.markdown_bold_to_bbcode(tooltip_desc)
 	pass
-	
+
+func get_value() -> String:
+	return value if !randomize_button.button_pressed else ["true","false"].pick_random()
+
 func init(data: Dictionary, option_name : String):
-	description = data["description"]
-	create_tooltip()
+	super(data,option_name)
 	if int(data["value"]["'true'"]) == 50:
 		toggle_by_default = true
 		pass
-	value = false
+	value = "false"
 	pass

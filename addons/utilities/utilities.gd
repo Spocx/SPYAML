@@ -44,3 +44,22 @@ func is_uppercase(c: String) -> bool:
 func is_lowercase(c: String) -> bool:
 	var n = c.unicode_at(0)
 	return n >= 97 and n <= 122
+	
+func markdown_bold_to_bbcode(text: String) -> String:
+	var regex := RegEx.new()
+	regex.compile(r"\*\*(.*?)\*\*")
+	return regex.sub(text, "[color=#a6e3a1]$1[/color]", true)
+	
+func extract_url(text: String) -> String:
+	var regex := RegEx.new()
+
+	regex.compile(
+		r"\b((https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?)\b"
+	)
+
+	var result := regex.search(text)
+
+	if result:
+		return result.get_string()
+
+	return ""

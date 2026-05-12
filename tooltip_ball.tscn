@@ -1,24 +1,10 @@
 [gd_scene format=3 uid="uid://lhee8cu3gw2j"]
 
-[ext_resource type="Texture2D" uid="uid://6deccbx8vxrq" path="res://circle.png" id="1_vtmpl"]
+[ext_resource type="Texture2D" uid="uid://obbqi6uq8b28" path="res://tooltip.png" id="1_qet1t"]
 [ext_resource type="Script" uid="uid://b80mrh8xg75h6" path="res://tooltip_ball.gd" id="2_qet1t"]
 
 [node name="tooltip_ball" type="TextureRect" unique_id=373896103]
 self_modulate = Color(0.79607844, 0.6509804, 0.96862745, 1)
-texture = ExtResource("1_vtmpl")
+texture = ExtResource("1_qet1t")
 stretch_mode = 3
 script = ExtResource("2_qet1t")
-
-[node name="Label" type="Label" parent="." unique_id=1089570725]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.09019608, 0.09019608, 0.13725491, 1)
-theme_override_colors/font_outline_color = Color(0.09019608, 0.09019608, 0.13725491, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 16
-text = "?"
-vertical_alignment = 1

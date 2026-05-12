@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://vdrrwhjrtmb7"]
+
+[ext_resource type="Script" uid="uid://ceqm45xvynaku" path="res://option_objects/choice_option.gd" id="1_g0acp"]
+[ext_resource type="PackedScene" uid="uid://lhee8cu3gw2j" path="res://tooltip_ball.tscn" id="2_0s0on"]
+[ext_resource type="FontFile" uid="uid://gh4we85kr00f" path="res://fonts/Inter_18pt-Bold.ttf" id="3_g0xqy"]
+[ext_resource type="StyleBox" uid="uid://c1do33y4kmpb8" path="res://themes/optionrandombutton.tres" id="4_q3d1o"]
+[ext_resource type="StyleBox" uid="uid://n52o4kl4xwkv" path="res://themes/optionrandombuttonpressed.tres" id="5_el56n"]
+[ext_resource type="StyleBox" uid="uid://drbshyo84ivh8" path="res://themes/optionrandombuttonhover.tres" id="6_0amgi"]
+[ext_resource type="Texture2D" uid="uid://68yubqil6jks" path="res://url.png" id="7_0s0on"]
+
+[node name="ChoiceOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("option_button", "value_label", "randomize_button", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+theme_override_constants/separation = 4
+script = ExtResource("1_g0acp")
+option_button = NodePath("editingsection/OptionButton")
+value_label = NodePath("valuedisplaysection/value")
+randomize_button = NodePath("buttonsection/Button")
+option_label_area = NodePath("optionlabelsection")
+value_display_area = NodePath("valuedisplaysection")
+editing_area = NodePath("editingsection")
+button_area = NodePath("buttonsection")
+option_name_label = NodePath("optionlabelsection/Label")
+tooltip = NodePath("optionlabelsection/tooltip_ball")
+link_button = NodePath("TextureRect/LinkButton")
+
+[node name="optionlabelsection" type="HBoxContainer" parent="." unique_id=464737206]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="optionlabelsection" unique_id=373896103 instance=ExtResource("2_0s0on")]
+layout_mode = 2
+tooltip = "this is a slider setting"
+
+[node name="Label" type="Label" parent="optionlabelsection" unique_id=1228497149]
+layout_mode = 2
+text = "slider setting"
+vertical_alignment = 1
+
+[node name="valuedisplaysection" type="HBoxContainer" parent="." unique_id=1662730373]
+layout_mode = 2
+
+[node name="value" type="Label" parent="valuedisplaysection" unique_id=2007182671]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_g0xqy")
+horizontal_alignment = 2
+
+[node name="editingsection" type="HBoxContainer" parent="." unique_id=1896774072]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="editingsection" unique_id=1046465835]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_q3d1o")
+theme_override_styles/pressed = ExtResource("5_el56n")
+theme_override_styles/hover = ExtResource("6_0amgi")
+theme_override_styles/disabled = ExtResource("4_q3d1o")
+fit_to_longest_item = false
+
+[node name="Control" type="Control" parent="editingsection" unique_id=784301210]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Control2" type="Control" parent="." unique_id=2145118848]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="buttonsection" type="HBoxContainer" parent="." unique_id=2070322917]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="buttonsection" unique_id=1078681852]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/normal = ExtResource("4_q3d1o")
+theme_override_styles/pressed = ExtResource("5_el56n")
+theme_override_styles/hover = ExtResource("6_0amgi")
+toggle_mode = true
+text = "randomize"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1443910738]
+visible = false
+self_modulate = Color(0.79607844, 0.6509804, 0.96862745, 1)
+z_index = 1
+layout_mode = 2
+texture = ExtResource("7_0s0on")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect" unique_id=124908263]
+self_modulate = Color(0.07058824, 0.07058824, 0.10980392, 1)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_0s0on")
+expand_mode = 2
+
+[node name="LinkButton" type="LinkButton" parent="TextureRect" unique_id=615553549]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -5.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+underline = 1

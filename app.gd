@@ -118,7 +118,6 @@ func _attempt_populate_template_select():
 		return
 	
 	#template_select.clear()
-	print("a")
 	template_selector.remove_buttons()
 	dir.list_dir_begin()
 	for f : String in dir.get_files():
@@ -157,9 +156,9 @@ func _open_yaml_file(_path : String):
 	
 	if(!current_yaml_template_dict.is_empty()):
 		#print(current_yaml_template_dict)
-		var file = FileAccess.open("user://debugyamltext.txt", FileAccess.WRITE)
-		file.store_line(JSON.stringify(current_yaml_template_dict))
-		file.close()
+		#var file = FileAccess.open("user://debugyamltext.txt", FileAccess.WRITE)
+		#file.store_line(JSON.stringify(current_yaml_template_dict))
+		#file.close()
 		_enable_save_buttons()
 		_set_topbar_items()
 		_create_options()
@@ -179,22 +178,21 @@ func _set_topbar_items():
 
 func _set_requirements_tooltip_items():
 	var full_string : String = ""
-	var key_amount = current_yaml_template_dict["file_options"]["requires"].keys().size()
-	var current_key_index = 0
 	for key in current_yaml_template_dict["file_options"]["requires"].keys():
 		var current_value = current_yaml_template_dict["file_options"]["requires"][key]
+		var current_line : String = "     ("
 		if key == "version":
-			full_string += "[color=#a6e3a1]- Archipelago version[/color]: " + current_value
+			current_line += "[color=#a6e3a1]- Archipelago version[/color]: " + current_value
 		elif key == "game":
 			var game_name : String = current_value.keys()[0]
 			var world_version : String = current_value[game_name]
-			full_string += "[color=#a6e3a1]- game[/color]: " + game_name + " [color=#a6e3a1]using world version[/color]: " + world_version
+			current_line += "[color=#a6e3a1]- game[/color]: " + game_name + " [color=#a6e3a1]using world version[/color]: " + world_version
 		else:
-			full_string += str(current_yaml_template_dict["file_options"]["requires"][key])
-		current_key_index += 1
-		if current_key_index < key_amount:
-			full_string += "\n"
-	requirements_tooltip.tooltip = full_string
+			current_line += str(current_yaml_template_dict["file_options"]["requires"][key])
+		full_string += current_line
+		full_string += "\n"
+	var cat_message = "    /\n[color=#fab387][b]₍^. .^₎⟆[/b][/color]"
+	requirements_tooltip.tooltip = full_string+cat_message
 
 #region saving
 func _enable_save_buttons():
