@@ -57,7 +57,7 @@ func init(_data: Dictionary, _option_name : String):
 	if _data.has("description"):
 		description = _data["description"]
 	else:
-		description = "     (hi! sadly this item has no description)\n    /\n[color=#a6e3a1][b]₍^. .^₎⟆[/b][/color]"
+		description = "     (hi! sadly this item has no description)\n    /\n[color=#fab387][b]₍^. .^₎⟆[/b][/color]"
 	create_tooltip()
 	pass
 	

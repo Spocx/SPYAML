@@ -2,13 +2,25 @@
 
 [ext_resource type="Script" uid="uid://dry7eie7w6o1k" path="res://option_objects/list_option.gd" id="1_oatg0"]
 [ext_resource type="PackedScene" uid="uid://lhee8cu3gw2j" path="res://tooltip_ball.tscn" id="2_oatg0"]
+[ext_resource type="StyleBox" uid="uid://c1do33y4kmpb8" path="res://themes/optionrandombutton.tres" id="4_oatg0"]
+[ext_resource type="FontFile" uid="uid://rlpteggq4s3u" path="res://fonts/Inter_18pt-Regular.ttf" id="5_44qe6"]
+[ext_resource type="StyleBox" uid="uid://n52o4kl4xwkv" path="res://themes/optionrandombuttonpressed.tres" id="5_r13gy"]
+[ext_resource type="StyleBox" uid="uid://drbshyo84ivh8" path="res://themes/optionrandombuttonhover.tres" id="6_krlih"]
 [ext_resource type="Texture2D" uid="uid://68yubqil6jks" path="res://url.png" id="7_xu78e"]
 [ext_resource type="PackedScene" uid="uid://w8748pip2m7w" path="res://foldable_custom.tscn" id="8_r13gy"]
 
-[node name="ListOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2dvp"]
+bg_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+
+[node name="ListOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "item_list", "input_field", "add_button", "warning_label", "type_select", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
 theme_override_constants/separation = 0
 script = ExtResource("1_oatg0")
 fold = NodePath("FoldableCustom")
+item_list = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer/VBoxContainer")
+input_field = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/LineEdit")
+add_button = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/Button")
+warning_label = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/apworld_folder_warning")
+type_select = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/OptionButton")
 option_label_area = NodePath("optionlabelsection")
 value_display_area = NodePath("valuedisplaysection")
 editing_area = NodePath("editingsection")
@@ -61,21 +73,92 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" parent_id_path=PackedInt32Array(278162043, 1079031639) index="0" unique_id=1220709629]
-layout_mode = 2
-text = "hahahaha"
+[node name="folderanim" parent="FoldableCustom/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 704795906) index="1" unique_id=1173293643]
+clip_children = 2
+custom_minimum_size = Vector2(0, 500)
+theme_override_styles/panel = SubResource("StyleBoxFlat_j2dvp")
 
-[node name="Label2" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" parent_id_path=PackedInt32Array(278162043, 1079031639) index="1" unique_id=959855432]
-layout_mode = 2
-text = "hahahaha"
+[node name="MarginContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 790081638) index="0" unique_id=80702115]
+theme_override_constants/margin_top = 10
 
-[node name="Label3" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" parent_id_path=PackedInt32Array(278162043, 1079031639) index="2" unique_id=1017246059]
-layout_mode = 2
-text = "hahahaha"
+[node name="Content" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer" index="0" unique_id=1079031639]
+theme_override_constants/separation = 3
 
-[node name="Label4" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" parent_id_path=PackedInt32Array(278162043, 1079031639) index="3" unique_id=1677933692]
+[node name="type_selector" type="HBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="0" unique_id=624112666]
 layout_mode = 2
-text = "hahahahahahahahahahahahahahahahaha"
+
+[node name="optionlabelsection" type="HBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector" unique_id=1311135506]
+layout_mode = 2
+
+[node name="tooltip_ball" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/optionlabelsection" unique_id=580317431 instance=ExtResource("2_oatg0")]
+layout_mode = 2
+tooltip = "what type of value archipelago expects in this list.
+[color=#a6e3a1]int[/color]: numbers
+[color=#a6e3a1]string[/color]: text items"
+
+[node name="Label" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/optionlabelsection" unique_id=1620831472]
+layout_mode = 2
+text = "List type"
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector" unique_id=1094327632]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79607844, 0.6509804, 0.96862745, 1)
+theme_override_colors/font_hover_color = Color(0.79607844, 0.6509804, 0.96862745, 1)
+theme_override_styles/normal = ExtResource("4_oatg0")
+theme_override_styles/pressed = ExtResource("5_r13gy")
+theme_override_styles/hover = ExtResource("6_krlih")
+theme_override_styles/disabled = ExtResource("4_oatg0")
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "string"
+popup/item_0/id = 0
+popup/item_1/text = "int"
+popup/item_1/id = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="1" unique_id=1614448920]
+layout_mode = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer" unique_id=1759742640]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LineEdit" type="LineEdit" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="2" unique_id=2073493398]
+layout_mode = 2
+placeholder_text = "value"
+context_menu_enabled = false
+emoji_menu_enabled = false
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Button" type="Button" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="3" unique_id=2099815475]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/Button" unique_id=1344168789]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="apworld_folder_warning" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="4" unique_id=1041618783]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.54509807, 0.65882355, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_44qe6")
+theme_override_font_sizes/font_size = 12
+text = "Item already in list"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Control3" type="Control" parent="." unique_id=156466982]
 custom_minimum_size = Vector2(4, 0)
@@ -86,6 +169,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="linkbuttonholder" unique_id=1443910738]
+visible = false
 self_modulate = Color(0.79607844, 0.6509804, 0.96862745, 1)
 z_index = 1
 layout_mode = 1

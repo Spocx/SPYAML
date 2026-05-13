@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dg7qwqu6ab2b5"]
+
+[ext_resource type="Script" uid="uid://cguiptbts4xco" path="res://option_objects/list_option_item.gd" id="1_6gf3d"]
+[ext_resource type="Texture2D" uid="uid://doe0h6bu1tqiq" path="res://trash_icon.png" id="1_7tthc"]
+[ext_resource type="Texture2D" uid="uid://b3n7qyxunmpmq" path="res://trash_icon_pressed.png" id="2_6gf3d"]
+[ext_resource type="Texture2D" uid="uid://vr2fijw8d6l3" path="res://trash_icon_hovered.png" id="3_d0tnt"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1520178543 node_paths=PackedStringArray("label", "remove_button")]
+theme_override_constants/separation = 0
+script = ExtResource("1_6gf3d")
+label = NodePath("Label")
+remove_button = NodePath("button")
+
+[node name="button" type="TextureButton" parent="." unique_id=1241748951]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_7tthc")
+texture_pressed = ExtResource("2_6gf3d")
+texture_hover = ExtResource("3_d0tnt")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="." unique_id=492146726]
+layout_mode = 2
+text = "- item 1"

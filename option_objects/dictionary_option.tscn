@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://w8748pip2m7w" path="res://foldable_custom.tscn" id="3_67cc6"]
 [ext_resource type="Texture2D" uid="uid://68yubqil6jks" path="res://url.png" id="4_skoy1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmhbm"]
+bg_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+
 [node name="DictionaryOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
 theme_override_constants/separation = 0
 script = ExtResource("1_hmhbm")
@@ -54,6 +57,10 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="folderanim" parent="FoldableCustom/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 704795906) index="1" unique_id=1173293643]
+clip_children = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hmhbm")
+
 [node name="Label" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" parent_id_path=PackedInt32Array(278162043, 1079031639) index="0" unique_id=1220709629]
 layout_mode = 2
 text = "hahahaha"
@@ -79,6 +86,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="linkbuttonholder" unique_id=1443910738]
+visible = false
 self_modulate = Color(0.79607844, 0.6509804, 0.96862745, 1)
 z_index = 1
 layout_mode = 1

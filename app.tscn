@@ -528,6 +528,7 @@ scroll_active = false
 script = ExtResource("7_a37lv")
 
 [node name="save yaml template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=994435136]
+visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 disabled = true
