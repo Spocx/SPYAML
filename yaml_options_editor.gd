@@ -14,12 +14,12 @@ var sections : Dictionary[String,FoldableCustom]
 
 const FOLDABLE_CUSTOM = preload("uid://w8748pip2m7w")
 
-func createSections(section_array : Array[String]):
+func _reset():
 	for key in sections:
 		sections[key].queue_free()
-	
 	sections.clear()
-	
+
+func createSections(section_array : Array[String]):
 	for s in section_array:
 		createSection(s)
 
@@ -57,7 +57,7 @@ func createOptions(options_dict: Dictionary):
 			if option != null:
 				option.init(options_dict[key],key)
 				addOptionToSection(option,options_dict[key]["section"])
-				setOptionCommonValues(option,key)
+				#setOptionCommonValues(option,key)
 			#print(key + " | " + options_dict[key]["section"] + " | " + OptionParent.TYPE.keys()[type])
 	
 	call_deferred("orderSectionOptions")

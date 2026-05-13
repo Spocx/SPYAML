@@ -12,7 +12,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2dvp"]
 bg_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
 
-[node name="ListOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "item_list", "input_field", "add_button", "warning_label", "type_select", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[node name="ListOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "item_list", "input_field", "add_button", "warning_label", "type_select", "type_tooltip", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
 theme_override_constants/separation = 0
 script = ExtResource("1_oatg0")
 fold = NodePath("FoldableCustom")
@@ -21,6 +21,7 @@ input_field = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/Ma
 add_button = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/Button")
 warning_label = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/apworld_folder_warning")
 type_select = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/OptionButton")
+type_tooltip = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/optionlabelsection/tooltip_ball")
 option_label_area = NodePath("optionlabelsection")
 value_display_area = NodePath("valuedisplaysection")
 editing_area = NodePath("editingsection")

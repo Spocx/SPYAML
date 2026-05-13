@@ -159,10 +159,35 @@ func _open_yaml_file(_path : String):
 		#var file = FileAccess.open("user://debugyamltext.txt", FileAccess.WRITE)
 		#file.store_line(JSON.stringify(current_yaml_template_dict))
 		#file.close()
-		_enable_save_buttons()
-		_set_topbar_items()
-		_create_options()
+		_reset_ui_items()
+		options_creator._reset()
+		
+		requirements_tooltip.visible = true
+		var created_options = false
+		
+		if current_yaml_template_dict.has("file_options") and current_yaml_template_dict.has("randomizer_options"):
+			if current_yaml_template_dict["randomizer_options"].has("options"):
+				if current_yaml_template_dict["randomizer_options"]["options"].has("value"):
+					_enable_save_buttons()
+					_set_topbar_items()
+					_create_options()
+					created_options = true
+
+		if !created_options:
+			game_name_label.text = "Game: [color=#f38ba8]invalid yaml [b]₍^- ˕ -^₎⟆[/b][/color]"
+			description_box.text = "the given yaml was invalid. are you trying to open an archipelago yaml options file?"
+			requirements_tooltip.tooltip = "[color=#f38ba8]the given yaml was invalid. This tool only accepts archipelago yaml option files. there's 2 types of those of which only 1 type is allowed.\n\n[b]Allowed files start with '# Q. What is this file?'[/b][/color]"
+			pass
 	pass
+
+func _reset_ui_items():
+
+	load_yaml_to_start_panel.visible = true
+	save_yaml_button.disabled = true
+	save_yaml_template_button.disabled = true
+	game_name_label.text = "Game:"
+	requirements_label.text = "Requirements:"
+	description_box.text = ""
 
 func _create_options():
 	options_creator.createSections(current_yaml_template_dict["option_sections"])
@@ -170,9 +195,9 @@ func _create_options():
 
 func _set_topbar_items():
 	game_name_label.text = "Game: [color=cba6f7]"+ current_yaml_template_dict["file_options"]["game"] +"[/color]"
-	requirements_label.text = "Requirements: [color=cba6f7]" + str(current_yaml_template_dict["file_options"]["requires"].size())+"[/color]"
-	requirements_tooltip.visible = true
-	_set_requirements_tooltip_items()
+	if current_yaml_template_dict["file_options"].has("requires"):
+		requirements_label.text = "Requirements: [color=cba6f7]" + str(current_yaml_template_dict["file_options"]["requires"].size())+"[/color]"
+		_set_requirements_tooltip_items()
 	load_yaml_to_start_panel.visible = false
 	description_box.text = current_yaml_template_dict["file_options"]["description"].substr(0,current_yaml_template_dict["file_options"]["description"].length()-31).strip_edges()
 

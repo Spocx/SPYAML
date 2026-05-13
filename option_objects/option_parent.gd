@@ -22,10 +22,11 @@ var description : String = "A system that can move progression earlier, to try a
 @export var link_button: LinkButton
 
 var dictionary_name : String = ""
+var display_name: String = ""
 
 func set_option_name(_name : String):
 	dictionary_name = _name
-	var display_name = _name.replace('_',' ')
+	display_name = _name.replace('_',' ')
 	display_name = Utilities.humanize_identifier(display_name)
 	#display_name = Utilities.camel_to_words(display_name)
 	option_name_label.text = display_name
@@ -54,6 +55,7 @@ func color_part_of_description(what: String, color : Color):
 	description = first_part+"[color="+hexcol+"]"+second_part+"[/color]"+third_part
 	
 func init(_data: Dictionary, _option_name : String):
+	set_option_name(_option_name)
 	if _data.has("description"):
 		description = _data["description"]
 	else:

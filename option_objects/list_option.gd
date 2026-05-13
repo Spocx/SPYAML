@@ -14,6 +14,7 @@ enum LIST_TYPE{
 @export var add_button : Button
 @export var warning_label : Label
 @export var type_select : OptionButton
+@export var type_tooltip : TextureRect
 
 var items : Array[ListOptionItem]
 var warning_label_timer : float = 0
@@ -67,7 +68,7 @@ func create_tooltip():
 
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)
-	fold.set_title(option_name)
+	fold.set_title(display_name)
 	
 	var _type : LIST_TYPE = LIST_TYPE.NUMBER
 
@@ -75,6 +76,9 @@ func init(data: Dictionary, option_name : String):
 		if _value is not int:
 			_type = LIST_TYPE.STRING
 			break
+			
+	if data["value"]["list"].size() == 0:
+		_type = LIST_TYPE.STRING
 	
 	list_type = _type
 	
@@ -83,6 +87,10 @@ func init(data: Dictionary, option_name : String):
 	for _value in data["value"]["list"]:
 		var _v = str(_value).strip_edges()
 		add_item(_v)
+		
+	if is_preset_string_list():
+		type_select.disabled = true
+		type_tooltip.tooltip += "\n\n[color=#a6e3a1][b]This is a common archipelago option, list value type has been locked in for you.[/b][/color]"
 
 func get_value() -> String:
 	match list_type:
@@ -102,34 +110,27 @@ func add_item_from_button():
 	add_item(input_field.text)
 
 func add_item(_item):
-	var can_add : bool = true
 	var _item_name : String = _item.strip_edges() 
 	
 	if _item_name == "":
 		show_warning("item name can not be empty")
-		can_add = false
+		return
 		
 	if has_item(_item_name):
 		show_warning("item already in list")
-		can_add = false
+		return
 	
 	if list_type == LIST_TYPE.NUMBER:
 		if !_item_name.is_valid_int():
 			show_warning("item is not a number")
-			can_add = false
+			return
 	
-	#if _item_name.contains('"'):
-	#	show_warning("item contains invalid characters")
-	#	can_add = false
-	
-	if can_add:
-		var new_item : ListOptionItem = LIST_OPTION_ITEM.instantiate()
-		item_list.add_child(new_item)
-		items.push_back(new_item)
-		new_item.set_value(_item_name)
-		new_item.owner_option = self
-		input_field.clear()
-		pass
+	var new_item : ListOptionItem = LIST_OPTION_ITEM.instantiate()
+	item_list.add_child(new_item)
+	items.push_back(new_item)
+	new_item.set_value(_item_name)
+	new_item.owner_option = self
+	input_field.clear()
 	pass
 
 func has_item(_item : String) -> bool:
@@ -150,3 +151,21 @@ func show_warning(_text : String):
 	warning_label.visible = true
 	warning_label_timer = 3
 	pass
+
+func is_preset_string_list() -> bool:
+	var items_locations_lists : Array[String] = [
+		"local_items",
+		"non_local_items",
+		"start_hints",
+		"start_location_hints",
+		"exclude_locations",
+		"priority_locations",
+		"item_links",
+		"plando_items"
+	]
+	
+	for i in items_locations_lists:
+		if dictionary_name == i:
+			return true
+	
+	return false

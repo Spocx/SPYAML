@@ -18,4 +18,4 @@ func create_tooltip():
 
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)
-	fold.set_title(option_name)
+	fold.set_title(display_name)
