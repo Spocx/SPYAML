@@ -15,15 +15,32 @@ enum LIST_TYPE{
 @export var warning_label : Label
 @export var type_select : OptionButton
 @export var type_tooltip : TextureRect
+@export var clear_list_button : Button
+
+@export var tooltip_spacer: Control
+@export var link_items: Array[Control]
 
 var items : Array[ListOptionItem]
 var warning_label_timer : float = 0
 var list_type : LIST_TYPE = LIST_TYPE.STRING
 
+func hide_tooltip():
+	tooltip.visible = false
+	tooltip_spacer.visible = false
+	for i in link_items:
+		i.visible = false
+
 func _ready() -> void:
 	type_select.item_selected.connect(select_list_type)
 	add_button.pressed.connect(add_item_from_button)
+	input_field.text_submitted.connect(add_item)
+	clear_list_button.pressed.connect(clear_list)
 	pass
+
+func clear_list():
+	for item in items:
+		item.queue_free()
+	items.clear()
 
 func select_list_type(_selected: int):
 	match _selected:

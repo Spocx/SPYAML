@@ -12,7 +12,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2dvp"]
 bg_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
 
-[node name="ListOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "item_list", "input_field", "add_button", "warning_label", "type_select", "type_tooltip", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[node name="ListOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "item_list", "input_field", "add_button", "warning_label", "type_select", "type_tooltip", "clear_list_button", "tooltip_spacer", "link_items", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
 theme_override_constants/separation = 0
 script = ExtResource("1_oatg0")
 fold = NodePath("FoldableCustom")
@@ -22,6 +22,9 @@ add_button = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/Mar
 warning_label = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/apworld_folder_warning")
 type_select = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/OptionButton")
 type_tooltip = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/optionlabelsection/tooltip_ball")
+clear_list_button = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/clear button")
+tooltip_spacer = NodePath("Control")
+link_items = [NodePath("linkbuttonholder"), NodePath("Control3")]
 option_label_area = NodePath("optionlabelsection")
 value_display_area = NodePath("valuedisplaysection")
 editing_area = NodePath("editingsection")
@@ -75,8 +78,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="folderanim" parent="FoldableCustom/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 704795906) index="1" unique_id=1173293643]
-clip_children = 2
-custom_minimum_size = Vector2(0, 500)
+clip_children = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_j2dvp")
 
 [node name="MarginContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 790081638) index="0" unique_id=80702115]
@@ -119,23 +121,24 @@ popup/item_0/id = 0
 popup/item_1/text = "int"
 popup/item_1/id = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="1" unique_id=1614448920]
+[node name="clear button" type="Button" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector" unique_id=960035028]
 layout_mode = 2
-theme_override_constants/margin_bottom = 4
+mouse_filter = 1
+theme_override_styles/normal = ExtResource("4_oatg0")
+theme_override_styles/pressed = ExtResource("5_r13gy")
+theme_override_styles/hover = ExtResource("6_krlih")
+text = "clear list"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer" unique_id=1759742640]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="LineEdit" type="LineEdit" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="2" unique_id=2073493398]
+[node name="LineEdit" type="LineEdit" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="1" unique_id=2073493398]
 layout_mode = 2
 placeholder_text = "value"
+keep_editing_on_text_submit = true
 context_menu_enabled = false
 emoji_menu_enabled = false
 clear_button_enabled = true
 caret_blink = true
 
-[node name="Button" type="Button" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="3" unique_id=2099815475]
+[node name="Button" type="Button" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="2" unique_id=2099815475]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 mouse_filter = 1
@@ -151,7 +154,7 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="apworld_folder_warning" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="4" unique_id=1041618783]
+[node name="apworld_folder_warning" type="Label" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="3" unique_id=1041618783]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9529412, 0.54509807, 0.65882355, 1)
 theme_override_constants/line_spacing = 0
@@ -160,6 +163,14 @@ theme_override_font_sizes/font_size = 12
 text = "Item already in list"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content" index="4" unique_id=1614448920]
+layout_mode = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer" unique_id=1759742640]
+layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Control3" type="Control" parent="." unique_id=156466982]
 custom_minimum_size = Vector2(4, 0)
