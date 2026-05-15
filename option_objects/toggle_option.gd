@@ -4,6 +4,7 @@ class_name ToggleOption
 @export var randomize_button : Button
 @onready var customcheckbox: CustomCheckbox = $editingsection/customcheckbox
 @onready var value_label: Label = $valuedisplaysection/value
+@export var link_items: Array[Control]
 var toggle_by_default = false
 
 func _ready() -> void:
@@ -13,7 +14,7 @@ func _ready() -> void:
 		customcheckbox.call_deferred("toggle")
 	
 func value_changed(_value : bool):
-	value = "true" if _value else "false"
+	value = _value
 	if _value:
 		value_label.text = "on"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(166,227,161))
@@ -21,6 +22,11 @@ func value_changed(_value : bool):
 		value_label.text = "off"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(235,160,172))
 	#print(value)
+
+func hide_tooltip():
+	tooltip.visible = false
+	for i in link_items:
+		i.visible = false
 
 func randomize_button_pressed():
 	
@@ -31,8 +37,6 @@ func randomize_button_pressed():
 	else:
 		customcheckbox.set_enabled(true)
 		value_changed(customcheckbox.on)
-	
-	print(get_value())
 
 func create_tooltip():
 	var tooltip_desc : String = description
@@ -40,8 +44,8 @@ func create_tooltip():
 	tooltip.tooltip = Utilities.markdown_bold_to_bbcode(tooltip_desc)
 	pass
 
-func get_value() -> String:
-	return value if !randomize_button.button_pressed else ["true","false"].pick_random()
+func get_value() -> Variant:
+	return value if !randomize_button.button_pressed else [true,false].pick_random()
 
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)

@@ -83,6 +83,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j2dvp")
 
 [node name="MarginContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 790081638) index="0" unique_id=80702115]
 theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 0
 
 [node name="Content" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer" index="0" unique_id=1079031639]
 theme_override_constants/separation = 3

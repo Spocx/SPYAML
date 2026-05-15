@@ -10,7 +10,7 @@ enum TYPE{
 	UNSUPORTED
 }
 
-var value : String
+var value : Variant
 var label_width : float = 0
 var description : String = "A system that can move progression earlier, to try and prevent the player from getting stuck and bored early.\n\nA lower setting means more getting stuck. A higher setting means less getting stuck.\n\nYou can define additional values between the minimum and maximum values.\nMinimum value is 0\nMaximum value is 99\n"
 @export var option_label_area: HBoxContainer
@@ -21,6 +21,7 @@ var description : String = "A system that can move progression earlier, to try a
 @export var tooltip: TextureRect
 @export var link_button: LinkButton
 
+var o_index : int = 0
 var dictionary_name : String = ""
 var display_name: String = ""
 
@@ -69,5 +70,5 @@ func attempt_set_url(description_input: String):
 		link_button.uri = url
 		link_button.get_parent().visible = true
 
-func get_value():
+func get_value() -> Variant:
 	return value

@@ -43,7 +43,7 @@ func create_tooltip():
 	tooltip.tooltip = Utilities.markdown_bold_to_bbcode(tooltip_desc)
 	pass
 
-func get_value() -> String:
+func get_value() -> Variant:
 	return value if !randomize_button.button_pressed else actual_values.pick_random()
 
 func init(data: Dictionary, option_name : String):

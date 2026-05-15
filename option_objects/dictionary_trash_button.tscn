@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bdhnj06ol8xjq"]
+
+[ext_resource type="Texture2D" uid="uid://doe0h6bu1tqiq" path="res://trash_icon.png" id="1_52ped"]
+[ext_resource type="Script" uid="uid://bdshxj1uwwmbm" path="res://option_objects/dictionary_trash_button.gd" id="1_u7e3u"]
+[ext_resource type="Texture2D" uid="uid://b3n7qyxunmpmq" path="res://trash_icon_pressed.png" id="2_u7e3u"]
+[ext_resource type="Texture2D" uid="uid://vr2fijw8d6l3" path="res://trash_icon_hovered.png" id="3_crnqx"]
+
+[node name="dictionary_trash_button" type="HBoxContainer" unique_id=1612466291 node_paths=PackedStringArray("button")]
+theme_override_constants/separation = 0
+script = ExtResource("1_u7e3u")
+button = NodePath("button")
+
+[node name="button" type="TextureButton" parent="." unique_id=1985357343]
+custom_minimum_size = Vector2(12, 32)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 1
+texture_normal = ExtResource("1_52ped")
+texture_pressed = ExtResource("2_u7e3u")
+texture_hover = ExtResource("3_crnqx")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="." unique_id=1190613681]
+layout_mode = 2
+size_flags_vertical = 0
+text = "-"

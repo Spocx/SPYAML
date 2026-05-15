@@ -31,6 +31,7 @@ func createSection(_name : String):
 	new_section.set_title(_name) 
 
 func createOptions(options_dict: Dictionary):
+	var c_index = 0
 	for key in options_dict:
 		if options_dict[key] is Dictionary:
 			var type : OptionParent.TYPE = get_option_type(options_dict[key])
@@ -55,6 +56,8 @@ func createOptions(options_dict: Dictionary):
 					pass
 					
 			if option != null:
+				option.o_index = c_index
+				c_index += 1
 				option.init(options_dict[key],key)
 				addOptionToSection(option,options_dict[key]["section"])
 				#setOptionCommonValues(option,key)

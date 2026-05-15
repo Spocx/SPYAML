@@ -109,25 +109,30 @@ func init(data: Dictionary, option_name : String):
 		type_select.disabled = true
 		type_tooltip.tooltip += "\n\n[color=#a6e3a1][b]This is a common archipelago option, list value type has been locked in for you.[/b][/color]"
 
-func get_value() -> String:
+func get_value() -> Variant:
 	match list_type:
 		LIST_TYPE.STRING:
 			var values : Array[String]
 			for item in items:
 				values.push_back(item.get_value())
-			return str(values)
+			return values
 		LIST_TYPE.NUMBER:
 			var values : Array[int]
 			for item in items:
 				values.push_back(int(item.get_value()))
-			return str(values)
-	return "[]"
+			return values
+	return []
 
 func add_item_from_button():
 	add_item(input_field.text)
 
 func add_item(_item):
 	var _item_name : String = _item.strip_edges() 
+	
+	if _item_name.begins_with("'") and _item_name.ends_with("'"):
+		_item_name = _item_name.substr(1,_item_name.length()-2).strip_edges()
+	if _item_name.begins_with('"') and _item_name.ends_with('"'):
+		_item_name = _item_name.substr(1,_item_name.length()-2).strip_edges()
 	
 	if _item_name == "":
 		show_warning("item name can not be empty")

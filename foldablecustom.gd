@@ -55,33 +55,60 @@ func add_section_child(child : OptionParent):
 	child_options.push_back(child)
 
 func reorder_children():
-	for option in child_options:
-		if option is ListOption or option is DictionaryOption:
-			content_list.move_child(option,content_list.get_child_count())
+	child_options.sort_custom(child_sort)
+	var _i = 0
+	for child in child_options:
+		content_list.move_child(child,_i)
+		_i+=1
+	#for option in child_options:
+	#	if option is ListOption or option is DictionaryOption:
+	#		content_list.move_child(option,content_list.get_child_count())
 	pass
+
+#func child_sort(a,b):
+	#if (a is DictionaryOption or a is ListOption) and (b is not DictionaryOption and b is not ListOption):
+		#return false
+	#if (a is not DictionaryOption and a is not ListOption) and (b is not DictionaryOption and b is not ListOption):
+		#return false
+	#if (a is DictionaryOption or a is ListOption) and (b is DictionaryOption or b is ListOption):
+		#return false
+	#return true
+func child_sort(a,b):
+	var a_foldout = a is DictionaryOption or a is ListOption
+	var b_foldout = b is DictionaryOption or b is ListOption
+
+	# Non-foldouts first
+	if a_foldout != b_foldout:
+		return !a_foldout
+		
+	return a.o_index < b.o_index
 
 func get_widest_label() -> float:
 	var widest_label : float = 0
 	for option in child_options:
-		widest_label = max(widest_label,option.option_label_area.size.x)
+		if option is not DictionaryOption and option is not ListOption:
+			widest_label = max(widest_label,option.option_label_area.size.x)
 	return widest_label
 
 func get_widest_value() -> float:
 	var widest_value : float = 0
 	for option in child_options:
-		widest_value = max(widest_value,option.value_display_area.size.x)
+		if option is not DictionaryOption and option is not ListOption:
+			widest_value = max(widest_value,option.value_display_area.size.x)
 	return widest_value
 
 func get_widest_edit() -> float:
 	var widest_edit : float = 0
 	for option in child_options:
-		widest_edit = max(widest_edit,option.editing_area.size.x)
+		if option is not DictionaryOption and option is not ListOption:
+			widest_edit = max(widest_edit,option.editing_area.size.x)
 	return widest_edit
 
 func get_widest_button() -> float:
 	var widest_button : float = 0
 	for option in child_options:
-		widest_button = max(widest_button,option.button_area.size.x)
+		if option is not DictionaryOption and option is not ListOption:
+			widest_button = max(widest_button,option.button_area.size.x)
 	return widest_button
 
 func setSizes(_label : float, _value : float, _edit : float, _button : float):

@@ -12,7 +12,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2dvp"]
 bg_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
 
-[node name="Dictionary_option" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "type_selector", "key_input", "add_button", "warning_label", "clear_dictionary_button", "item_list", "tooltip_spacer", "link_items", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[node name="Dictionary_option" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "type_selector", "key_input", "add_button", "warning_label", "type_tooltip", "clear_dictionary_button", "trash_icon_list", "tooltip_spacer", "link_items", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
 theme_override_constants/separation = 0
 script = ExtResource("1_hmhbm")
 fold = NodePath("FoldableCustom")
@@ -20,8 +20,9 @@ type_selector = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/
 key_input = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/LineEdit")
 add_button = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/Button")
 warning_label = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/apworld_folder_warning")
+type_tooltip = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/tooltip_ball")
 clear_dictionary_button = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector/clear button")
-item_list = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer/VBoxContainer")
+trash_icon_list = NodePath("FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer/HBoxContainer/remove item buttons")
 tooltip_spacer = NodePath("Control")
 link_items = [NodePath("linkbuttonholder"), NodePath("Control3")]
 option_label_area = NodePath("optionlabelsection")
@@ -71,14 +72,14 @@ mouse_filter = 2
 visible = false
 layout_mode = 2
 
-[node name="FoldableCustom" parent="." unique_id=278162043 instance=ExtResource("3_67cc6")]
+[node name="FoldableCustom" parent="." unique_id=278162043 node_paths=PackedStringArray("content_list") instance=ExtResource("3_67cc6")]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+content_list = NodePath("HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer/HBoxContainer/VBoxContainer")
 
 [node name="folderanim" parent="FoldableCustom/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 704795906) index="1" unique_id=1173293643]
 clip_children = 0
-custom_minimum_size = Vector2(500, 500)
 theme_override_styles/panel = SubResource("StyleBoxFlat_j2dvp")
 
 [node name="MarginContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 790081638) index="0" unique_id=80702115]
@@ -108,15 +109,17 @@ theme_override_styles/pressed = ExtResource("5_egii0")
 theme_override_styles/hover = ExtResource("6_rimic")
 theme_override_styles/disabled = ExtResource("4_akjjb")
 selected = 0
-item_count = 4
+item_count = 5
 popup/item_0/text = "string"
 popup/item_0/id = 0
 popup/item_1/text = "int"
 popup/item_1/id = 1
-popup/item_2/text = "list"
-popup/item_2/id = 2
-popup/item_3/text = "dictionary"
-popup/item_3/id = 3
+popup/item_2/text = "bool"
+popup/item_2/id = 4
+popup/item_3/text = "list"
+popup/item_3/id = 2
+popup/item_4/text = "dictionary"
+popup/item_4/id = 3
 
 [node name="LineEdit" type="LineEdit" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/type_selector" unique_id=2073493398]
 layout_mode = 2
@@ -166,9 +169,17 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer" unique_id=1759742640]
+[node name="HBoxContainer" type="HBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer" unique_id=1533234075]
 layout_mode = 2
 theme_override_constants/separation = 0
+
+[node name="remove item buttons" type="VBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer/HBoxContainer" unique_id=418779513]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer/HBoxContainer" unique_id=1759742640]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
 
 [node name="Control3" type="Control" parent="." unique_id=156466982]
 custom_minimum_size = Vector2(4, 0)

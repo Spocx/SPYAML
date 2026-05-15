@@ -3,19 +3,24 @@ class_name DictionaryOption
 
 const LIST_OPTION = preload("res://option_objects/list_option.tscn")
 const DICTIONARY_OPTION = preload("res://option_objects/dictionary_option.tscn")
+const TOGGLE_OPTION = preload("res://option_objects/toggle_option.tscn")
+const DICTIONARY_TRASH_BUTTON = preload("res://option_objects/dictionary_trash_button.tscn")
+const DICTIONARY_NUMBER_OPTION = preload("res://option_objects/dictionary_number_option.tscn")
+const DICTIONARY_TEXT_OPTION = preload("res://option_objects/dictionary_text_option.tscn")
 
 @export var fold: FoldableCustom
 @export var type_selector : OptionButton
 @export var key_input : LineEdit
 @export var add_button : Button
 @export var warning_label : Label
+@export var type_tooltip : TextureRect
 @export var clear_dictionary_button : Button
-@export var item_list : VBoxContainer
+@export var trash_icon_list : VBoxContainer
 
 @export var tooltip_spacer: Control
 @export var link_items: Array[Control]
 
-var items : Array[OptionParent]
+var c_index : int = 0
 var warning_label_timer : float = 0
 
 func hide_tooltip():
@@ -31,16 +36,30 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
+	for trash in trash_icon_list.get_children():
+		var _index = trash.get_index()
+		trash.custom_minimum_size.y = fold.child_options[_index].size.y
+	
 	if warning_label.visible:
 		warning_label_timer -= delta
 		if warning_label_timer <= 0:
 			warning_label.visible = false
 
 func clear_dictionary():
-	for item in items:
+	for item in fold.child_options:
 		item.queue_free()
-	items.clear()
-	
+	fold.child_options.clear()
+	for child in trash_icon_list.get_children():
+		child.queue_free()
+	c_index = 0
+
+func remove_item(trash_icon: DictionaryTrashButton):
+	var _index = trash_icon.get_index()
+	fold.child_options[_index].queue_free()
+	fold.child_options.remove_at(_index)
+	trash_icon.queue_free()
+	pass
+
 func value_changed(_index : int):
 	value = "value"
 
@@ -57,30 +76,110 @@ func show_warning(_text : String):
 	warning_label_timer = 3
 	pass
 
+
 func add_item_from_button():
 	add_item(0)
 	pass
 
 func add_item(_value):
-	match type_selector.get_item_text(type_selector.selected):
+	var _item_type : String = type_selector.get_item_text(type_selector.selected)
+	var _item_name : String = key_input.text.strip_edges()
+	
+	if _item_name == "":
+		show_warning("item name can not be empty")
+		return
+		
+	if has_item(_item_name):
+		show_warning("item already in list")
+		return
+	
+	var option : OptionParent
+	var trash_button : DictionaryTrashButton = DICTIONARY_TRASH_BUTTON.instantiate()
+	trash_button.owner_dict = self
+	match _item_type:
 		"string":
+			option = DICTIONARY_TEXT_OPTION.instantiate()
+			option.dictionary_name = _item_name
+			option.display_name = _item_name
+			option.option_name_label.text = _item_name
+			option.set_label_width()
+			fold.add_section_child(option)
+			pass
+		"int":
+			option = DICTIONARY_NUMBER_OPTION.instantiate()
+			option.dictionary_name = _item_name
+			option.display_name = _item_name
+			option.option_name_label.text = _item_name
+			option.set_label_width()
+			fold.add_section_child(option)
 			pass
 		
-		"int":
+		"bool":
+			option = TOGGLE_OPTION.instantiate()
+			option.hide_tooltip()
+			option.dictionary_name = _item_name
+			option.display_name = _item_name
+			option.option_name_label.text = _item_name
+			option.set_label_width()
+			fold.add_section_child(option)
 			pass
 			
 		"list":
-			var option = LIST_OPTION.instantiate()
+			option = LIST_OPTION.instantiate()
 			option.hide_tooltip()
-			item_list.add_child(option)
+			option.dictionary_name = _item_name
+			option.display_name = _item_name
+			option.option_name_label.text = _item_name
+			option.fold.set_title(option.display_name)
+			fold.add_section_child(option)
 			pass
 			
 		"dictionary":
-			var option = DICTIONARY_OPTION.instantiate()
+			option = DICTIONARY_OPTION.instantiate()
 			option.hide_tooltip()
-			item_list.add_child(option)
+			option.dictionary_name = _item_name
+			option.display_name = _item_name
+			option.option_name_label.text = _item_name
+			option.fold.set_title(option.display_name)
+			fold.add_section_child(option)
 			pass
+	option.o_index = c_index
+	c_index += 1
+	trash_icon_list.add_child(trash_button)
+	key_input.text = ""
+	fold.call_deferred("reorder_children")
+	call_deferred("section_option_labels_resize")
+
+func section_option_labels_resize():
+	var widest_label  : float = fold.get_widest_label()
+	var widest_value  : float = fold.get_widest_value()
+	var widest_edit   : float = fold.get_widest_edit()
+	var widest_button : float = fold.get_widest_button()
+	fold.setSizes(widest_label,widest_value,widest_edit,widest_button)
+
+func has_item(_item : String) -> bool:
+	for item in fold.child_options:
+		if item.display_name == _item:
+			return true
+	return false
 
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)
 	fold.set_title(display_name)
+	if is_preset_dict():
+		type_selector.selected = 1
+		type_selector.disabled = true
+		type_tooltip.tooltip += "\n\n[color=#a6e3a1][b]This is a common archipelago option, dictionary value type has been locked in for you.[/b][/color]"
+		pass
+
+func is_preset_dict():
+	var items_locations_lists : Array[String] = [
+	"start_inventory",
+	"start_inventory_from_pool",
+	]
+	
+	for i in items_locations_lists:
+		if dictionary_name == i:
+			return true
+	
+	return false

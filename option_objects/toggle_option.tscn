@@ -9,10 +9,11 @@
 [ext_resource type="StyleBox" uid="uid://drbshyo84ivh8" path="res://themes/optionrandombuttonhover.tres" id="7_lcera"]
 [ext_resource type="Texture2D" uid="uid://68yubqil6jks" path="res://url.png" id="8_cxjls"]
 
-[node name="ToggleOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("randomize_button", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[node name="ToggleOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("randomize_button", "link_items", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
 theme_override_constants/separation = 4
 script = ExtResource("1_vuqmd")
 randomize_button = NodePath("buttonsection/Button")
+link_items = [NodePath("TextureRect")]
 option_label_area = NodePath("optionlabelsection")
 value_display_area = NodePath("valuedisplaysection")
 editing_area = NodePath("editingsection")

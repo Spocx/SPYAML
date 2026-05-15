@@ -13,7 +13,7 @@ func _ready() -> void:
 	savemod = value_label.get_theme_color("font_color")
 	
 func value_changed(_value : float):
-	value = str(int(_value))
+	value = int(_value)
 	value_label.text = str(value)
 
 var enabled_tween_slider : Tween
@@ -46,8 +46,8 @@ func create_tooltip():
 	tooltip.tooltip = Utilities.markdown_bold_to_bbcode(tooltip_desc)
 	pass
 
-func get_value() -> String:
-	return value if !randomize_button.button_pressed else str(randi_range(int(slider.min_value),int(slider.max_value)))
+func get_value() -> Variant:
+	return value if !randomize_button.button_pressed else randi_range(int(slider.min_value),int(slider.max_value))
 
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)

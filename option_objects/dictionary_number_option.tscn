@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b4rhkf4j3etvx"]
+
+[ext_resource type="Script" uid="uid://b65xchnvqltx2" path="res://option_objects/dicitonary_number_option.gd" id="1_da8bt"]
+[ext_resource type="FontFile" uid="uid://gh4we85kr00f" path="res://fonts/Inter_18pt-Bold.ttf" id="3_3e2oi"]
+[ext_resource type="StyleBox" uid="uid://c1do33y4kmpb8" path="res://themes/optionrandombutton.tres" id="5_ox3ye"]
+[ext_resource type="StyleBox" uid="uid://n52o4kl4xwkv" path="res://themes/optionrandombuttonpressed.tres" id="6_2wxs8"]
+[ext_resource type="StyleBox" uid="uid://drbshyo84ivh8" path="res://themes/optionrandombuttonhover.tres" id="7_njylh"]
+
+[node name="ToggleOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("randomize_button", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+theme_override_constants/separation = 4
+script = ExtResource("1_da8bt")
+randomize_button = NodePath("buttonsection/Button")
+option_label_area = NodePath("optionlabelsection")
+value_display_area = NodePath("valuedisplaysection")
+editing_area = NodePath("editingsection")
+button_area = NodePath("buttonsection")
+option_name_label = NodePath("optionlabelsection/Label")
+tooltip = NodePath("")
+link_button = NodePath("")
+
+[node name="optionlabelsection" type="HBoxContainer" parent="." unique_id=1149554301]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="optionlabelsection" unique_id=182232785]
+layout_mode = 2
+text = "toggle setting"
+vertical_alignment = 1
+
+[node name="valuedisplaysection" type="HBoxContainer" parent="." unique_id=1168111212]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="value" type="Label" parent="valuedisplaysection" unique_id=1131150380]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5372549, 0.8627451, 0.92156863, 1)
+theme_override_colors/font_shadow_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_3e2oi")
+horizontal_alignment = 2
+
+[node name="editingsection" type="HBoxContainer" parent="." unique_id=1491704628]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="editingsection" unique_id=1408729704]
+custom_minimum_size = Vector2(218, 0)
+layout_mode = 2
+allow_greater = true
+allow_lesser = true
+update_on_text_changed = true
+
+[node name="Control2" type="Control" parent="." unique_id=1089374539]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="buttonsection" type="HBoxContainer" parent="." unique_id=1293544318]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="buttonsection" unique_id=77213226]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/normal = ExtResource("5_ox3ye")
+theme_override_styles/pressed = ExtResource("6_2wxs8")
+theme_override_styles/hover = ExtResource("7_njylh")
+toggle_mode = true
+text = "randomize"
+
+[node name="min" type="SpinBox" parent="buttonsection" unique_id=11466895]
+visible = false
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+allow_greater = true
+allow_lesser = true
+update_on_text_changed = true
+prefix = "min:"
+
+[node name="max" type="SpinBox" parent="buttonsection" unique_id=1679900501]
+visible = false
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+allow_greater = true
+allow_lesser = true
+update_on_text_changed = true
+prefix = "max:"
