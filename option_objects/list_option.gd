@@ -109,6 +109,12 @@ func init(data: Dictionary, option_name : String):
 		type_select.disabled = true
 		type_tooltip.tooltip += "\n\n[color=#a6e3a1][b]This is a common archipelago option, list value type has been locked in for you.[/b][/color]"
 
+func add_items_from_array(arr : Array):
+	for _value in arr:
+		var _v = str(_value).strip_edges()
+		add_item(_v)
+	pass
+
 func get_value() -> Variant:
 	match list_type:
 		LIST_TYPE.STRING:

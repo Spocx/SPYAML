@@ -2,10 +2,10 @@ extends OptionParent
 class_name DictionaryNumberOption
 
 @export var randomize_button : Button
-@onready var value_label: Label = $valuedisplaysection/value
-@onready var spin_box: SpinBox = $editingsection/SpinBox
-@onready var _min: SpinBox = $buttonsection/min
-@onready var _max: SpinBox = $buttonsection/max
+@export var value_label: Label
+@export var spin_box: SpinBox
+@export var _min: SpinBox
+@export var _max: SpinBox
 
 
 func _ready() -> void:

@@ -47,6 +47,9 @@ func create_tooltip():
 func get_value() -> Variant:
 	return value if !randomize_button.button_pressed else [true,false].pick_random()
 
+func set_on():
+	toggle_by_default = true
+
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)
 	if int(data["value"]["'true'"]) == 50:

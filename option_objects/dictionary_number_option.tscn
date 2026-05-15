@@ -6,17 +6,19 @@
 [ext_resource type="StyleBox" uid="uid://n52o4kl4xwkv" path="res://themes/optionrandombuttonpressed.tres" id="6_2wxs8"]
 [ext_resource type="StyleBox" uid="uid://drbshyo84ivh8" path="res://themes/optionrandombuttonhover.tres" id="7_njylh"]
 
-[node name="ToggleOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("randomize_button", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[node name="ToggleOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("randomize_button", "value_label", "spin_box", "_min", "_max", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label")]
 theme_override_constants/separation = 4
 script = ExtResource("1_da8bt")
 randomize_button = NodePath("buttonsection/Button")
+value_label = NodePath("valuedisplaysection/value")
+spin_box = NodePath("editingsection/SpinBox")
+_min = NodePath("buttonsection/min")
+_max = NodePath("buttonsection/max")
 option_label_area = NodePath("optionlabelsection")
 value_display_area = NodePath("valuedisplaysection")
 editing_area = NodePath("editingsection")
 button_area = NodePath("buttonsection")
 option_name_label = NodePath("optionlabelsection/Label")
-tooltip = NodePath("")
-link_button = NodePath("")
 
 [node name="optionlabelsection" type="HBoxContainer" parent="." unique_id=1149554301]
 layout_mode = 2

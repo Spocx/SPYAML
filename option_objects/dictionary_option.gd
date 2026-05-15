@@ -81,10 +81,15 @@ func add_item_from_button():
 	add_item(0)
 	pass
 
-func add_item(_value):
+func add_item(_value, _force_type: String = "", _force_name : String = "", _default_value : Variant = null):
 	var _item_type : String = type_selector.get_item_text(type_selector.selected)
 	var _item_name : String = key_input.text.strip_edges()
 	
+	if _force_type != "":
+		_item_type = _force_type
+	if _force_name != "":
+		_item_name = _force_name
+		
 	if _item_name == "":
 		show_warning("item name can not be empty")
 		return
@@ -104,6 +109,9 @@ func add_item(_value):
 			option.option_name_label.text = _item_name
 			option.set_label_width()
 			fold.add_section_child(option)
+			
+			if _default_value != null:
+				option.line_edit.text = _default_value
 			pass
 		"int":
 			option = DICTIONARY_NUMBER_OPTION.instantiate()
@@ -112,6 +120,9 @@ func add_item(_value):
 			option.option_name_label.text = _item_name
 			option.set_label_width()
 			fold.add_section_child(option)
+			
+			if _default_value != null:
+				option.spin_box.value = _default_value
 			pass
 		
 		"bool":
@@ -122,6 +133,10 @@ func add_item(_value):
 			option.option_name_label.text = _item_name
 			option.set_label_width()
 			fold.add_section_child(option)
+			
+			if _default_value != null:
+				if _default_value == true:
+					option.set_on()
 			pass
 			
 		"list":
@@ -132,6 +147,9 @@ func add_item(_value):
 			option.option_name_label.text = _item_name
 			option.fold.set_title(option.display_name)
 			fold.add_section_child(option)
+			
+			if _default_value != null:
+				option.add_items_from_array(_default_value)
 			pass
 			
 		"dictionary":
@@ -142,6 +160,9 @@ func add_item(_value):
 			option.option_name_label.text = _item_name
 			option.fold.set_title(option.display_name)
 			fold.add_section_child(option)
+			
+			if _default_value != null:
+				option.init_values(_default_value)
 			pass
 	option.o_index = c_index
 	c_index += 1
@@ -171,6 +192,25 @@ func init(data: Dictionary, option_name : String):
 		type_selector.disabled = true
 		type_tooltip.tooltip += "\n\n[color=#a6e3a1][b]This is a common archipelago option, dictionary value type has been locked in for you.[/b][/color]"
 		pass
+	init_values(data["value"])
+
+func init_values(value_data: Dictionary):
+	for key in value_data:
+		var _value = value_data[key]
+		if _value is Array:
+			add_item(0,"list",key,value_data[key])
+		if _value is Dictionary:
+			if value_data[key].has("value"):
+				add_item(0,"dictionary",key,value_data[key]["value"])
+			else:
+				add_item(0,"dictionary",key)
+		if _value is int:
+			add_item(0,"int",key,value_data[key])
+		if _value is String:
+			add_item(0,"string",key,value_data[key])
+		if _value is bool:
+			add_item(0,"bool",key,value_data[key])
+	pass
 
 func is_preset_dict():
 	var items_locations_lists : Array[String] = [
