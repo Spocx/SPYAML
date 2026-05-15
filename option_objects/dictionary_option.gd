@@ -212,6 +212,12 @@ func init_values(value_data: Dictionary):
 			add_item(0,"bool",key,value_data[key])
 	pass
 
+func get_value() -> Variant:
+	var dict : Dictionary = {}
+	for item in fold.child_options:
+		dict[item.dictionary_name] = item.get_value()
+	return dict
+
 func is_preset_dict():
 	var items_locations_lists : Array[String] = [
 	"start_inventory",

@@ -10,6 +10,7 @@ var toggle_by_default = false
 func _ready() -> void:
 	randomize_button.pressed.connect(randomize_button_pressed)
 	customcheckbox.value_changed.connect(value_changed)
+	value = false
 	if(toggle_by_default):
 		customcheckbox.call_deferred("toggle")
 	
@@ -21,7 +22,6 @@ func value_changed(_value : bool):
 	else:
 		value_label.text = "off"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(235,160,172))
-	#print(value)
 
 func hide_tooltip():
 	tooltip.visible = false
@@ -55,5 +55,5 @@ func init(data: Dictionary, option_name : String):
 	if int(data["value"]["'true'"]) == 50:
 		toggle_by_default = true
 		pass
-	value = "false"
+	value = false
 	pass
