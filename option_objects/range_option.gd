@@ -12,6 +12,16 @@ func _ready() -> void:
 	randomize_button.pressed.connect(randomize_button_pressed)
 	savemod = value_label.get_theme_color("font_color")
 	
+	if Settingload.load_settings:
+		load_setting()
+	
+func load_setting():
+	if Settingload.settings["settings"].has(dictionary_name):
+		slider.value = Settingload.settings["settings"][dictionary_name][2]
+		if Settingload.settings["settings"][dictionary_name][1]:
+			randomize_button.button_pressed = true
+			randomize_button_pressed()
+		
 func value_changed(_value : float):
 	value = int(_value)
 	value_label.text = str(value)
@@ -36,8 +46,7 @@ func randomize_button_pressed():
 		value_label.text = str(value)
 		value_label.add_theme_color_override("font_color",savemod)
 		enabled_tween_slider.tween_property(slider,"modulate:a",1,0.1)
-	
-	print(get_value())
+
 
 func create_tooltip():
 	var first_index = description.find("\n\nYou can define additional values between the minimum and maximum values.")
@@ -48,6 +57,9 @@ func create_tooltip():
 
 func get_value() -> Variant:
 	return value if !randomize_button.button_pressed else randi_range(int(slider.min_value),int(slider.max_value))
+
+func get_setting_value() -> Variant:
+	return ["range",randomize_button.button_pressed, value]
 
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)

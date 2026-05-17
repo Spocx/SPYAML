@@ -113,6 +113,7 @@ func get_option_type(option_data : Dictionary) -> OptionParent.TYPE:
 	
 	var is_valid_choice_option = true
 	var count_50 : int = 0
+	var rest_is_0 : bool = true
 	for key in option_data["value"].keys():
 		if option_data["value"][key] is not int:
 			is_valid_choice_option = false
@@ -120,8 +121,10 @@ func get_option_type(option_data : Dictionary) -> OptionParent.TYPE:
 		
 		if option_data["value"][key] == 50:
 			count_50 += 1
+		elif option_data["value"][key] != 0:
+			rest_is_0 = false
 		pass
-	if is_valid_choice_option and count_50 == 1:
+	if is_valid_choice_option and count_50 == 1 and rest_is_0:
 		return OptionParent.TYPE.CHOICE
 	
 	return OptionParent.TYPE.DICTIONARY

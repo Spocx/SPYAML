@@ -6,14 +6,41 @@ class_name ToggleOption
 @onready var value_label: Label = $valuedisplaysection/value
 @export var link_items: Array[Control]
 var toggle_by_default = false
+var spawned_by_dict : bool = false
 
 func _ready() -> void:
 	randomize_button.pressed.connect(randomize_button_pressed)
 	customcheckbox.value_changed.connect(value_changed)
 	value = false
+	
+	if !spawned_by_dict:
+		if Settingload.load_settings:
+			load_setting()
+	
 	if(toggle_by_default):
 		customcheckbox.call_deferred("toggle")
+
+func load_setting():
+	if Settingload.settings["settings"].has(dictionary_name):
+		value_changed(Settingload.settings["settings"][dictionary_name][2])
+		if value:
+			toggle_by_default = true
+		if Settingload.settings["settings"][dictionary_name][1]:
+			randomize_button.button_pressed = true
+			call_deferred("randomize_button_pressed")
+
+func load_setting_through_dict(data):
+	randomize_button.button_pressed = false
+	if data[2]:
+		customcheckbox.set_on()
+	else:
+		customcheckbox.set_off()
+	randomize_button.button_pressed = data[1]
+	randomize_button_pressed()
+	#	return ["toggle" ,randomize_button.button_pressed, value]
 	
+	pass
+
 func value_changed(_value : bool):
 	value = _value
 	if _value:
@@ -31,11 +58,11 @@ func hide_tooltip():
 func randomize_button_pressed():
 	
 	if randomize_button.button_pressed:
-		customcheckbox.set_enabled(false)
+		customcheckbox.call_deferred("set_enabled",false)
 		value_label.text = "random"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(137,220,235))
 	else:
-		customcheckbox.set_enabled(true)
+		customcheckbox.call_deferred("set_enabled",true)
 		value_changed(customcheckbox.on)
 
 func create_tooltip():
@@ -46,6 +73,9 @@ func create_tooltip():
 
 func get_value() -> Variant:
 	return value if !randomize_button.button_pressed else [true,false].pick_random()
+
+func get_setting_value() -> Variant:
+	return ["toggle" ,randomize_button.button_pressed, value]
 
 func set_on():
 	toggle_by_default = true

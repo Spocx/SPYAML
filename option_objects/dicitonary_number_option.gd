@@ -34,3 +34,13 @@ func randomize_button_pressed():
 
 func get_value() -> Variant:
 	return int(spin_box.value) if !randomize_button.button_pressed else randi_range(int(_min.value),int(_max.value))
+
+func get_setting_value():
+	return ["dict_number",randomize_button.button_pressed,int(spin_box.value),int(_min.value),int(_max.value)]
+	
+func load_setting_through_dict(data):
+	spin_box.value = data[2]
+	_min.value = data[3]
+	_max.value = data[4]
+	randomize_button.button_pressed = data[1]
+	randomize_button_pressed()

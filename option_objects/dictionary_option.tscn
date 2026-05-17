@@ -80,7 +80,6 @@ content_list = NodePath("HBoxContainer/folderanim/HBoxContainer/MarginContainer/
 
 [node name="folderanim" parent="FoldableCustom/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 704795906) index="1" unique_id=1173293643]
 clip_children = 0
-custom_minimum_size = Vector2(500, 500)
 theme_override_styles/panel = SubResource("StyleBoxFlat_j2dvp")
 
 [node name="MarginContainer" parent="FoldableCustom/HBoxContainer/folderanim/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 790081638) index="0" unique_id=80702115]

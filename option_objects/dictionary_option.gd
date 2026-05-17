@@ -22,6 +22,7 @@ const DICTIONARY_TEXT_OPTION = preload("res://option_objects/dictionary_text_opt
 
 var c_index : int = 0
 var warning_label_timer : float = 0
+var spawned_by_dict : bool = false
 
 func hide_tooltip():
 	tooltip.visible = false
@@ -33,6 +34,80 @@ func _ready() -> void:
 	clear_dictionary_button.pressed.connect(clear_dictionary)
 	add_button.pressed.connect(add_item_from_button)
 	key_input.text_submitted.connect(add_item)
+	
+	if Settingload.load_settings and !spawned_by_dict:
+		load_setting()
+	pass
+
+func load_setting():
+	if Settingload.settings["settings"].has(dictionary_name):
+		init_setting_through_dict(Settingload.settings["settings"][dictionary_name][1])
+	pass
+
+func load_setting_through_dict(_name,data):
+	fold.set_title(_name)
+	init_setting_through_dict(data[1])
+	pass
+
+func init_setting_through_dict(data):
+	clear_dictionary()
+	for key in data:
+		var option : OptionParent
+		match (data[key][0]):
+			"dict":
+				option = DICTIONARY_OPTION.instantiate()
+				option.hide_tooltip()
+				option.spawned_by_dict = true
+				option.dictionary_name = key
+				option.display_name = key
+				option.option_name_label.text = key
+				option.fold.set_title(option.display_name)
+				fold.add_section_child(option)
+				option.load_setting_through_dict(key,data[key])
+			"list":
+				option = LIST_OPTION.instantiate()
+				option.hide_tooltip()
+				option.spawned_by_dict = true
+				option.dictionary_name = key
+				option.display_name = key
+				option.option_name_label.text = key
+				option.fold.set_title(option.display_name)
+				fold.add_section_child(option)
+				option.load_setting_through_dict(data[key])
+			"toggle":
+				option = TOGGLE_OPTION.instantiate()
+				option.hide_tooltip()
+				option.spawned_by_dict = true
+				option.dictionary_name = key
+				option.display_name = key
+				option.option_name_label.text = key
+				option.set_label_width()
+				fold.add_section_child(option)
+				option.load_setting_through_dict(data[key])
+			"dict_number":
+				option = DICTIONARY_NUMBER_OPTION.instantiate()
+				option.dictionary_name = key
+				option.display_name = key
+				option.option_name_label.text = key
+				option.set_label_width()
+				fold.add_section_child(option)
+				option.load_setting_through_dict(data[key])
+			"dict_text":
+				option = DICTIONARY_TEXT_OPTION.instantiate()
+				option.dictionary_name = key
+				option.display_name = key
+				option.option_name_label.text = key
+				option.set_label_width()
+				fold.add_section_child(option)
+				option.load_setting_through_dict(data[key])
+		if option != null:
+			option.o_index = c_index
+			c_index += 1
+			var trash_button : DictionaryTrashButton = DICTIONARY_TRASH_BUTTON.instantiate()
+			trash_button.owner_dict = self
+			trash_icon_list.add_child(trash_button)
+	fold.call_deferred("reorder_children")
+	call_deferred("section_option_labels_resize")
 	pass
 
 func _process(delta: float) -> void:
@@ -128,6 +203,7 @@ func add_item(_value, _force_type: String = "", _force_name : String = "", _defa
 		"bool":
 			option = TOGGLE_OPTION.instantiate()
 			option.hide_tooltip()
+			option.spawned_by_dict = true
 			option.dictionary_name = _item_name
 			option.display_name = _item_name
 			option.option_name_label.text = _item_name
@@ -142,6 +218,7 @@ func add_item(_value, _force_type: String = "", _force_name : String = "", _defa
 		"list":
 			option = LIST_OPTION.instantiate()
 			option.hide_tooltip()
+			option.spawned_by_dict = true
 			option.dictionary_name = _item_name
 			option.display_name = _item_name
 			option.option_name_label.text = _item_name
@@ -155,6 +232,7 @@ func add_item(_value, _force_type: String = "", _force_name : String = "", _defa
 		"dictionary":
 			option = DICTIONARY_OPTION.instantiate()
 			option.hide_tooltip()
+			option.spawned_by_dict = true
 			option.dictionary_name = _item_name
 			option.display_name = _item_name
 			option.option_name_label.text = _item_name
@@ -202,8 +280,8 @@ func init_values(value_data: Dictionary):
 		if _value is Dictionary:
 			if value_data[key].has("value"):
 				add_item(0,"dictionary",key,value_data[key]["value"])
-			else:
-				add_item(0,"dictionary",key)
+			#else:
+				#add_item(0,"dictionary",key)
 		if _value is int:
 			add_item(0,"int",key,value_data[key])
 		if _value is String:
@@ -218,6 +296,12 @@ func get_value() -> Variant:
 		dict[item.dictionary_name] = item.get_value()
 	return dict
 
+func get_setting_value() -> Variant:
+	var dict : Dictionary = {}
+	for item in fold.child_options:
+		dict[item.dictionary_name] = item.get_setting_value()
+	return ["dict",dict]
+	
 func is_preset_dict():
 	var items_locations_lists : Array[String] = [
 	"start_inventory",

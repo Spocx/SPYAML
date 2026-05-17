@@ -23,6 +23,7 @@ enum LIST_TYPE{
 var items : Array[ListOptionItem]
 var warning_label_timer : float = 0
 var list_type : LIST_TYPE = LIST_TYPE.STRING
+var spawned_by_dict : bool = false
 
 func hide_tooltip():
 	tooltip.visible = false
@@ -35,6 +36,36 @@ func _ready() -> void:
 	add_button.pressed.connect(add_item_from_button)
 	input_field.text_submitted.connect(add_item)
 	clear_list_button.pressed.connect(clear_list)
+	
+	if Settingload.load_settings and !spawned_by_dict:
+		load_setting()
+	pass
+
+func load_setting():
+	if Settingload.settings["settings"].has(dictionary_name):
+		for item in items:
+			item.queue_free()
+		items.clear()
+		
+		list_type = Settingload.settings["settings"][dictionary_name][1]
+		type_select.selected = Settingload.settings["settings"][dictionary_name][1]
+		
+		for _value in Settingload.settings["settings"][dictionary_name][2]:
+			var _v = str(_value).strip_edges()
+			add_item(_v)
+
+func load_setting_through_dict(data):
+	#return ["list", list_type, get_value()]
+	for item in items:
+		item.queue_free()
+	items.clear()
+	
+	list_type = data[1]
+	type_select.selected = data[1]
+	
+	for _value in data[2]:
+		var _v = str(_value).strip_edges()
+		add_item(_v)
 	pass
 
 func clear_list():
@@ -128,6 +159,9 @@ func get_value() -> Variant:
 				values.push_back(int(item.get_value()))
 			return values
 	return []
+	
+func get_setting_value() -> Variant:
+	return ["list", list_type, get_value()]
 
 func add_item_from_button():
 	add_item(input_field.text)

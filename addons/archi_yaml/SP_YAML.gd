@@ -1,11 +1,8 @@
 class_name SPYaml 
 
+#region file_parse
 enum OPTION_TYPE{ BOOLEAN, LIST, INT } 
 
-# - static functions
-# - read archi yaml options file 
-# - parse archi yaml options 
-# - return a dictionary of options with descriptions
 static var current_header_section : String = "" 
 static var option_sections : Array[String]
 
@@ -67,7 +64,7 @@ static func read(path : String) -> Dictionary:
 			
 		#if key is description, ad sp message 
 		if key == "description": 
-			data[current_section][key] = parts[1] + " | (options created by SP YAML)" 
+			data[current_section][key] = parts[1] + " | (options created using SP-YAML: https://spocx.itch.io/sp-yaml)" 
 	
 	data["option_sections"] = option_sections
 	
@@ -273,37 +270,85 @@ static func split_yaml_line(line: String) -> PackedStringArray:
 	var in_single := false
 	var in_double := false
 
-	for i in range(line.length()):
-		var c = line[i]
+	for i in range(line.length() - 1, -1, -1):
+		var c := line[i]
 
-		# Toggle single quotes
 		if c == "'" and not in_double:
-			# Ignore apostrophes inside words
 			var prev_is_letter := false
 			var next_is_letter := false
 
 			if i > 0:
 				prev_is_letter = is_letter(line[i - 1])
-
 			if i < line.length() - 1:
 				next_is_letter = is_letter(line[i + 1])
 
-			var is_apostrophe = prev_is_letter and next_is_letter
-
-			if not is_apostrophe:
+			if not (prev_is_letter and next_is_letter):
 				in_single = !in_single
 
-		# Toggle double quotes
 		elif c == '"' and not in_single:
 			in_double = !in_double
 
-		# Found separator outside quotes
 		elif c == ":" and not in_single and not in_double:
 			if line.substr(i + 1).strip_edges() != "":
 				return [line.substr(0, i).strip_edges(), line.substr(i + 1).strip_edges()]
 			else:
 				return [line.substr(0, i).strip_edges()]
+
 	return []
 
 static func is_letter(c: String) -> bool:
 	return c.unicode_at(0) >= 65 and c.unicode_at(0) <= 122
+
+#endregion
+
+#region to yaml
+
+static func dict_to_yaml(data, indent := 0) -> String:
+	var yaml : String = ""
+	var indent_string : String = "  ".repeat(indent)
+	
+	match typeof(data):
+		TYPE_DICTIONARY:
+			for key in data:
+				var value = data[key]
+				if typeof(value) in [TYPE_DICTIONARY,TYPE_ARRAY]:
+					if value.is_empty():
+						match typeof(value):
+							TYPE_DICTIONARY:
+								yaml += indent_string + str(key)+": {}\n"
+							TYPE_ARRAY:
+								yaml += indent_string + str(key)+": []\n"
+					else:
+						yaml += indent_string + str(key)+":\n"+dict_to_yaml(value,indent+1)
+				else:
+					yaml += indent_string + str(key) + ": " + parse_yaml_value(value)+"\n"
+		TYPE_ARRAY:
+			for item in data:
+				if typeof(item) in [TYPE_DICTIONARY,TYPE_ARRAY]:
+					yaml += indent_string+"-\n"+dict_to_yaml(item,indent+1)
+				else:
+					yaml += indent_string+"- "+parse_yaml_value(item)+"\n"
+			pass
+	
+	return yaml
+	
+static func parse_yaml_value(value) -> String:
+	match typeof(value):
+		TYPE_STRING:
+			var sv : String = value
+			var qc : String = "'"
+			if sv.contains("'"):
+				qc = '"'
+			if sv.contains(':') or sv.contains('"') or sv.contains("'"):
+				if (!sv.begins_with("'") and !sv.ends_with("'")) and (!sv.begins_with('"') and !sv.ends_with('"')):
+					sv = qc+sv+qc
+			if sv.is_valid_int() or sv == "false" or sv == "true":
+				sv = "'"+sv+"'"
+			return sv
+		TYPE_BOOL:
+			return "true" if value else "false"
+		TYPE_NIL:
+			return "null"
+		_:
+			return str(value)
+#endregion

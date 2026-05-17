@@ -23,11 +23,13 @@ boot_splash/minimum_display_time=100
 
 SaveLoad="*uid://p4db54ocua0x"
 Utilities="*uid://b8ha4bofrydsf"
+Settingload="*uid://b81te23asuxjp"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=2
 window/stretch/aspect="expand"
 
 [editor_plugins]

@@ -72,3 +72,6 @@ func attempt_set_url(description_input: String):
 
 func get_value() -> Variant:
 	return value
+	
+func get_setting_value() -> Variant:
+	return 0

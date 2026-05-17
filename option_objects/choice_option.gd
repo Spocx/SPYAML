@@ -13,6 +13,17 @@ func _ready() -> void:
 	value_label.add_theme_color_override("font_color",Color.from_rgba8(137,220,235))
 	option_button.item_selected.connect(value_changed)
 	
+	if Settingload.load_settings:
+		load_setting()
+
+func load_setting():
+	if Settingload.settings["settings"].has(dictionary_name):
+		value = Settingload.settings["settings"][dictionary_name][2]
+		option_button.selected = actual_values.find(value)
+		if Settingload.settings["settings"][dictionary_name][1]:
+			randomize_button.button_pressed = true
+			randomize_button_pressed()
+
 func value_changed(_index : int):
 	value = actual_values[_index]
 
@@ -35,7 +46,6 @@ func randomize_button_pressed():
 		value_label.text = ""
 		enabled_tween_slider.tween_property(option_button,"modulate:a",1,0.1)
 	
-	print(get_value())
 
 func create_tooltip():
 	var tooltip_desc : String = description
@@ -45,6 +55,9 @@ func create_tooltip():
 
 func get_value() -> Variant:
 	return value if !randomize_button.button_pressed else actual_values.pick_random()
+
+func get_setting_value() -> Variant:
+	return ["choice", randomize_button.button_pressed, value]
 
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)

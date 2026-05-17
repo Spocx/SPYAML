@@ -46,6 +46,16 @@ func set_enabled(_enabled : bool):
 	else:
 		enabled_tween.tween_property(self,"modulate:a",0.1,0.1)
 
+func set_on():
+	if !on:
+		toggle()
+	pass
+	
+func set_off():
+	if on:
+		toggle()
+	pass
+
 func toggle():
 	if(enabled):
 		on = !on
