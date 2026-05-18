@@ -53,6 +53,18 @@ func _ready() -> void:
 	_connect_signals()
 	_check_template_folder_popup()
 	
+	var output = []
+
+	OS.execute(
+		"python",
+		["-m", "worlds.export_datapackage"],
+		output,
+		true,
+		false
+	)
+
+	print(output)
+	
 func _connect_signals():
 	get_window().files_dropped.connect(_file_dropped)
 	locate_template_folder_button.pressed.connect(_template_folder_popup)

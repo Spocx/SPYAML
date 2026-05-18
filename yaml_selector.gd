@@ -6,10 +6,6 @@ const YAML_SELECT_BUTTON = preload("uid://ciohpm7j11hvp")
 var selected : String = ""
 var buttons : Array[YAMLSelectButton]
 
-func _ready() -> void:
-	for i in 20:
-		spawn_button("hello")
-
 func reset_buttons():
 	for b in buttons:
 		b.reset_button()
