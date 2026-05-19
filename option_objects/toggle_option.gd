@@ -19,6 +19,19 @@ func _ready() -> void:
 	
 	if(toggle_by_default):
 		customcheckbox.call_deferred("toggle")
+	reset_default_button.pressed.connect(reset_value)
+	reset_default_button.visible = false
+	
+func reset_value():
+	
+	randomize_button.button_pressed = false
+	randomize_button_pressed()
+	if init_value:
+		customcheckbox.call_deferred("set_on")
+	else:
+		customcheckbox.call_deferred("set_off")
+	reset_default_button.visible = false
+	pass
 
 func load_setting():
 	if Settingload.settings["settings"].has(dictionary_name):
@@ -49,6 +62,9 @@ func value_changed(_value : bool):
 	else:
 		value_label.text = "off"
 		value_label.add_theme_color_override("font_color",Color.from_rgba8(235,160,172))
+	if value != init_value || randomize_button.button_pressed:
+		if ! spawned_by_dict:
+			reset_default_button.visible = true
 
 func hide_tooltip():
 	tooltip.visible = false
@@ -64,6 +80,9 @@ func randomize_button_pressed():
 	else:
 		customcheckbox.call_deferred("set_enabled",true)
 		value_changed(customcheckbox.on)
+	if value != init_value || randomize_button.button_pressed:
+		if ! spawned_by_dict:
+			reset_default_button.visible = true
 
 func create_tooltip():
 	var tooltip_desc : String = description
@@ -86,4 +105,6 @@ func init(data: Dictionary, option_name : String):
 		toggle_by_default = true
 		pass
 	value = false
+	init_value = toggle_by_default
+	reset_default_button.visible = false
 	pass

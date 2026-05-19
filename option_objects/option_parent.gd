@@ -11,6 +11,7 @@ enum TYPE{
 }
 
 var value : Variant
+var init_value : Variant
 var label_width : float = 0
 var description : String = "A system that can move progression earlier, to try and prevent the player from getting stuck and bored early.\n\nA lower setting means more getting stuck. A higher setting means less getting stuck.\n\nYou can define additional values between the minimum and maximum values.\nMinimum value is 0\nMaximum value is 99\n"
 @export var option_label_area: HBoxContainer
@@ -20,6 +21,7 @@ var description : String = "A system that can move progression earlier, to try a
 @export var option_name_label : Label
 @export var tooltip: TextureRect
 @export var link_button: LinkButton
+@export var reset_default_button : TextureButton
 
 var o_index : int = 0
 var dictionary_name : String = ""
@@ -62,6 +64,8 @@ func init(_data: Dictionary, _option_name : String):
 	else:
 		description = "     (hi! sadly this item has no description)\n    /\n[color=#fab387][b]₍^. .^₎⟆[/b][/color]"
 	create_tooltip()
+	if tooltip.tooltip.strip_edges() == "":
+		tooltip.tooltip =  "     (hi! sadly this item has no description)\n    /\n[color=#fab387][b]₍^. .^₎⟆[/b][/color]"
 	pass
 	
 func attempt_set_url(description_input: String):

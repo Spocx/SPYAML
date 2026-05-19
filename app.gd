@@ -24,6 +24,7 @@ const static_players_dir : String = "C:/ProgramData/Archipelago/Players"
 @export var yaml_saved_to_text : RichTextLabel
 @export var save_settings_button : Button
 @export var load_settings_button : Button
+@export var player_name_field : LineEdit
 
 @export_group("yaml elements")
 @export var game_name_label : RichTextLabel
@@ -52,18 +53,6 @@ func _save():
 func _ready() -> void:
 	_connect_signals()
 	_check_template_folder_popup()
-	
-	var output = []
-
-	OS.execute(
-		"python",
-		["-m", "worlds.export_datapackage"],
-		output,
-		true,
-		false
-	)
-
-	print(output)
 	
 func _connect_signals():
 	get_window().files_dropped.connect(_file_dropped)
@@ -376,7 +365,10 @@ func _attempt_save_yaml(_path : String):
 	yaml_saved_to_text.text = "[color=a6e3a1]YAML saved to[/color]: [color=#89dceb]"+_path+"[/color]."
 	_save()
 	var final_dictionary : Dictionary = {}
-	final_dictionary["name"] = save_yaml_popup.current_file.substr(0,save_yaml_popup.current_file.length()-5)
+	if player_name_field.text.strip_edges() != "":
+		final_dictionary["name"] = player_name_field.text
+	else:
+		final_dictionary["name"] = save_yaml_popup.current_file.substr(0,save_yaml_popup.current_file.length()-5)
 	final_dictionary["description"] = current_yaml_template_dict["file_options"]["description"]
 	final_dictionary["game"] = current_yaml_template_dict["file_options"]["game"]
 	final_dictionary[current_yaml_template_dict["file_options"]["game"]] = get_option_dict()

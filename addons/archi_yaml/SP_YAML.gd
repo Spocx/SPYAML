@@ -64,7 +64,10 @@ static func read(path : String) -> Dictionary:
 			
 		#if key is description, ad sp message 
 		if key == "description": 
-			data[current_section][key] = parts[1] + " | (options created using SP-YAML: https://spocx.itch.io/sp-yaml)" 
+			if (parts[1].begins_with("'") and parts[1].ends_with("'")) or (parts[1].begins_with('"') and parts[1].ends_with('"')):
+				data[current_section][key] = parts[1].substr(1,parts[1].length()-2) + " | (options created using SP-YAML: https://spocx.itch.io/sp-yaml)" 
+			else:
+				data[current_section][key] = parts[1] + " | (options created using SP-YAML: https://spocx.itch.io/sp-yaml)" 
 	
 	data["option_sections"] = option_sections
 	
@@ -212,29 +215,50 @@ static func split_top_level(text: String, delimiter: String = ",") -> PackedStri
 
 	var depth_curly := 0
 	var depth_square := 0
-	var in_quote:= false
+
+	var in_single_quote := false
+	var in_double_quote := false
 
 	for c in text:
 		match c:
 			"{":
-				depth_curly += 1
-			"}":
-				depth_curly -= 1
-			"[":
-				depth_square += 1
-			"]":
-				depth_square -= 1
-			"'":
-				in_quote = !in_quote
+				if !in_single_quote and !in_double_quote:
+					depth_curly += 1
 
-		if c == delimiter and depth_curly == 0 and depth_square == 0 and !in_quote:
-			result.append(current)
+			"}":
+				if !in_single_quote and !in_double_quote:
+					depth_curly -= 1
+
+			"[":
+				if !in_single_quote and !in_double_quote:
+					depth_square += 1
+
+			"]":
+				if !in_single_quote and !in_double_quote:
+					depth_square -= 1
+
+			"'":
+				if !in_double_quote:
+					in_single_quote = !in_single_quote
+
+			'"':
+				if !in_single_quote:
+					in_double_quote = !in_double_quote
+
+		if (
+			c == delimiter
+			and depth_curly == 0
+			and depth_square == 0
+			and !in_single_quote
+			and !in_double_quote
+		):
+			result.append(current.strip_edges())
 			current = ""
 		else:
 			current += c
 
 	if current != "":
-		result.append(current)
+		result.append(current.strip_edges())
 
 	return result
 

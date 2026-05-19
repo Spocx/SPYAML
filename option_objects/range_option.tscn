@@ -4,11 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://lhee8cu3gw2j" path="res://tooltip_ball.tscn" id="1_xqsoy"]
 [ext_resource type="FontFile" uid="uid://gh4we85kr00f" path="res://fonts/Inter_18pt-Bold.ttf" id="3_nsq4n"]
 [ext_resource type="StyleBox" uid="uid://c1do33y4kmpb8" path="res://themes/optionrandombutton.tres" id="4_3udof"]
+[ext_resource type="Texture2D" uid="uid://4h7nyswqyvuo" path="res://reset_icon.png" id="4_chd6r"]
+[ext_resource type="Texture2D" uid="uid://dmn6ivilgb2he" path="res://reset_icon_pressed.png" id="5_30o3h"]
 [ext_resource type="StyleBox" uid="uid://n52o4kl4xwkv" path="res://themes/optionrandombuttonpressed.tres" id="5_v4d8q"]
 [ext_resource type="StyleBox" uid="uid://drbshyo84ivh8" path="res://themes/optionrandombuttonhover.tres" id="6_6fsa7"]
+[ext_resource type="Texture2D" uid="uid://cojo82661wbkm" path="res://reset_icon_hovered.png" id="6_jv2je"]
 [ext_resource type="Texture2D" uid="uid://68yubqil6jks" path="res://url.png" id="7_v4d8q"]
 
-[node name="RangeOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("slider", "value_label", "randomize_button", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[node name="RangeOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("slider", "value_label", "randomize_button", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button", "reset_default_button")]
 theme_override_constants/separation = 4
 script = ExtResource("1_q73o7")
 slider = NodePath("editingsection/HSlider")
@@ -21,6 +24,7 @@ button_area = NodePath("buttonsection")
 option_name_label = NodePath("optionlabelsection/Label")
 tooltip = NodePath("optionlabelsection/tooltip_ball")
 link_button = NodePath("TextureRect/LinkButton")
+reset_default_button = NodePath("reset_value_area/TextureButton")
 
 [node name="optionlabelsection" type="HBoxContainer" parent="." unique_id=464737206]
 layout_mode = 2
@@ -74,6 +78,18 @@ theme_override_styles/pressed = ExtResource("5_v4d8q")
 theme_override_styles/hover = ExtResource("6_6fsa7")
 toggle_mode = true
 text = "randomize"
+
+[node name="reset_value_area" type="HBoxContainer" parent="." unique_id=864591262]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="reset_value_area" unique_id=1890526573]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture_normal = ExtResource("4_chd6r")
+texture_pressed = ExtResource("5_30o3h")
+texture_hover = ExtResource("6_jv2je")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1031594642]
 visible = false

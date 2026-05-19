@@ -7,9 +7,12 @@
 [ext_resource type="StyleBox" uid="uid://c1do33y4kmpb8" path="res://themes/optionrandombutton.tres" id="5_rgo1x"]
 [ext_resource type="StyleBox" uid="uid://n52o4kl4xwkv" path="res://themes/optionrandombuttonpressed.tres" id="6_cxjls"]
 [ext_resource type="StyleBox" uid="uid://drbshyo84ivh8" path="res://themes/optionrandombuttonhover.tres" id="7_lcera"]
+[ext_resource type="Texture2D" uid="uid://4h7nyswqyvuo" path="res://reset_icon.png" id="8_08ca8"]
 [ext_resource type="Texture2D" uid="uid://68yubqil6jks" path="res://url.png" id="8_cxjls"]
+[ext_resource type="Texture2D" uid="uid://dmn6ivilgb2he" path="res://reset_icon_pressed.png" id="9_8wgv2"]
+[ext_resource type="Texture2D" uid="uid://cojo82661wbkm" path="res://reset_icon_hovered.png" id="10_1oa4c"]
 
-[node name="ToggleOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("randomize_button", "link_items", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[node name="ToggleOption" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("randomize_button", "link_items", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button", "reset_default_button")]
 theme_override_constants/separation = 4
 script = ExtResource("1_vuqmd")
 randomize_button = NodePath("buttonsection/Button")
@@ -21,6 +24,7 @@ button_area = NodePath("buttonsection")
 option_name_label = NodePath("optionlabelsection/Label")
 tooltip = NodePath("optionlabelsection/tooltip_ball")
 link_button = NodePath("TextureRect/LinkButton")
+reset_default_button = NodePath("reset_value_area/TextureButton")
 
 [node name="optionlabelsection" type="HBoxContainer" parent="." unique_id=1149554301]
 layout_mode = 2
@@ -71,6 +75,18 @@ theme_override_styles/pressed = ExtResource("6_cxjls")
 theme_override_styles/hover = ExtResource("7_lcera")
 toggle_mode = true
 text = "randomize"
+
+[node name="reset_value_area" type="HBoxContainer" parent="." unique_id=1964685067]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="reset_value_area" unique_id=380918288]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture_normal = ExtResource("8_08ca8")
+texture_pressed = ExtResource("9_8wgv2")
+texture_hover = ExtResource("10_1oa4c")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=775803286]
 visible = false

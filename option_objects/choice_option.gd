@@ -12,9 +12,17 @@ func _ready() -> void:
 	randomize_button.pressed.connect(randomize_button_pressed)
 	value_label.add_theme_color_override("font_color",Color.from_rgba8(137,220,235))
 	option_button.item_selected.connect(value_changed)
-	
+	reset_default_button.pressed.connect(reset_value)
 	if Settingload.load_settings:
 		load_setting()
+
+func reset_value():
+	randomize_button.button_pressed = false
+	randomize_button_pressed()
+	option_button.selected = init_value
+	value_changed(init_value)
+	reset_default_button.visible = false
+	pass
 
 func load_setting():
 	if Settingload.settings["settings"].has(dictionary_name):
@@ -26,6 +34,7 @@ func load_setting():
 
 func value_changed(_index : int):
 	value = actual_values[_index]
+	reset_default_button.visible = true
 
 var enabled_tween_slider : Tween
 func randomize_button_pressed():
@@ -45,6 +54,7 @@ func randomize_button_pressed():
 		option_button.mouse_filter = Control.MOUSE_FILTER_STOP
 		value_label.text = ""
 		enabled_tween_slider.tween_property(option_button,"modulate:a",1,0.1)
+	reset_default_button.visible = true
 	
 
 func create_tooltip():
@@ -69,4 +79,6 @@ func init(data: Dictionary, option_name : String):
 			selected_index = option_button.item_count-1
 	option_button.selected = selected_index
 	value_changed(selected_index)
+	init_value = option_button.selected
+	reset_default_button.visible = false
 	pass

@@ -36,9 +36,19 @@ func _ready() -> void:
 	add_button.pressed.connect(add_item_from_button)
 	input_field.text_submitted.connect(add_item)
 	clear_list_button.pressed.connect(clear_list)
+	reset_default_button.visible = false
+	reset_default_button.pressed.connect(reset_default)
 	
 	if Settingload.load_settings and !spawned_by_dict:
 		load_setting()
+	pass
+
+func reset_default():
+	clear_list()
+	for _value in init_value:
+		var _v = str(_value).strip_edges()
+		add_item(_v)
+	reset_default_button.visible = false
 	pass
 
 func load_setting():
@@ -72,6 +82,8 @@ func clear_list():
 	for item in items:
 		item.queue_free()
 	items.clear()
+	if ! spawned_by_dict:
+		reset_default_button.visible = true
 
 func select_list_type(_selected: int):
 	match _selected:
@@ -135,10 +147,14 @@ func init(data: Dictionary, option_name : String):
 	for _value in data["value"]["list"]:
 		var _v = str(_value).strip_edges()
 		add_item(_v)
-		
+	
+	init_value = data["value"]["list"]
+	
 	if is_preset_string_list():
 		type_select.disabled = true
 		type_tooltip.tooltip += "\n\n[color=#a6e3a1][b]This is a common archipelago option, list value type has been locked in for you.[/b][/color]"
+	
+	reset_default_button.visible = false
 
 func add_items_from_array(arr : Array):
 	for _value in arr:
@@ -193,6 +209,8 @@ func add_item(_item):
 	new_item.set_value(_item_name)
 	new_item.owner_option = self
 	input_field.clear()
+	if ! spawned_by_dict:
+		reset_default_button.visible = true
 	pass
 
 func has_item(_item : String) -> bool:
@@ -206,6 +224,8 @@ func remove_item(_item : ListOptionItem):
 	if index != -1:
 		items.remove_at(index)
 		_item.queue_free()
+	if ! spawned_by_dict:
+		reset_default_button.visible = true
 	pass
 
 func show_warning(_text : String):

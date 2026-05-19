@@ -8,11 +8,14 @@
 [ext_resource type="StyleBox" uid="uid://n52o4kl4xwkv" path="res://themes/optionrandombuttonpressed.tres" id="5_egii0"]
 [ext_resource type="StyleBox" uid="uid://drbshyo84ivh8" path="res://themes/optionrandombuttonhover.tres" id="6_rimic"]
 [ext_resource type="FontFile" uid="uid://rlpteggq4s3u" path="res://fonts/Inter_18pt-Regular.ttf" id="7_mym4l"]
+[ext_resource type="Texture2D" uid="uid://4h7nyswqyvuo" path="res://reset_icon.png" id="8_rimic"]
+[ext_resource type="Texture2D" uid="uid://dmn6ivilgb2he" path="res://reset_icon_pressed.png" id="9_mym4l"]
+[ext_resource type="Texture2D" uid="uid://cojo82661wbkm" path="res://reset_icon_hovered.png" id="10_t8dhg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2dvp"]
 bg_color = Color(0.07058824, 0.07058824, 0.10980392, 1)
 
-[node name="Dictionary_option" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "type_selector", "key_input", "add_button", "warning_label", "type_tooltip", "clear_dictionary_button", "trash_icon_list", "tooltip_spacer", "link_items", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button")]
+[node name="Dictionary_option" type="HBoxContainer" unique_id=1619787900 node_paths=PackedStringArray("fold", "type_selector", "key_input", "add_button", "warning_label", "type_tooltip", "clear_dictionary_button", "trash_icon_list", "tooltip_spacer", "link_items", "option_label_area", "value_display_area", "editing_area", "button_area", "option_name_label", "tooltip", "link_button", "reset_default_button")]
 theme_override_constants/separation = 0
 script = ExtResource("1_hmhbm")
 fold = NodePath("FoldableCustom")
@@ -32,6 +35,7 @@ button_area = NodePath("buttonsection")
 option_name_label = NodePath("optionlabelsection/Label")
 tooltip = NodePath("tooltip_ball")
 link_button = NodePath("linkbuttonholder/TextureRect/LinkButton")
+reset_default_button = NodePath("FoldableCustom/Button/reset_value_area/TextureButton")
 
 [node name="tooltip_ball" parent="." unique_id=373896103 instance=ExtResource("2_dijbq")]
 custom_minimum_size = Vector2(0, 32)
@@ -77,6 +81,30 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 content_list = NodePath("HBoxContainer/folderanim/HBoxContainer/MarginContainer/Content/MarginContainer/HBoxContainer/VBoxContainer")
+
+[node name="reset_value_area" type="HBoxContainer" parent="FoldableCustom/Button" parent_id_path=PackedInt32Array(278162043, 1677156309) index="1" unique_id=720612675]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="FoldableCustom/Button/reset_value_area" unique_id=1187239861]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture_normal = ExtResource("8_rimic")
+texture_pressed = ExtResource("9_mym4l")
+texture_hover = ExtResource("10_t8dhg")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="folderanim" parent="FoldableCustom/HBoxContainer" parent_id_path=PackedInt32Array(278162043, 704795906) index="1" unique_id=1173293643]
 clip_children = 0

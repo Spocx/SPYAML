@@ -11,9 +11,15 @@ func _ready() -> void:
 	slider.value_changed.connect(value_changed)
 	randomize_button.pressed.connect(randomize_button_pressed)
 	savemod = value_label.get_theme_color("font_color")
-	
 	if Settingload.load_settings:
 		load_setting()
+	reset_default_button.pressed.connect(reset_default)
+	
+func reset_default():
+	slider.value = init_value
+	randomize_button.button_pressed = false
+	randomize_button_pressed()
+	reset_default_button.visible = false
 	
 func load_setting():
 	if Settingload.settings["settings"].has(dictionary_name):
@@ -25,6 +31,7 @@ func load_setting():
 func value_changed(_value : float):
 	value = int(_value)
 	value_label.text = str(value)
+	reset_default_button.visible = true
 
 var enabled_tween_slider : Tween
 func randomize_button_pressed():
@@ -46,10 +53,11 @@ func randomize_button_pressed():
 		value_label.text = str(value)
 		value_label.add_theme_color_override("font_color",savemod)
 		enabled_tween_slider.tween_property(slider,"modulate:a",1,0.1)
+	reset_default_button.visible = true
 
 
 func create_tooltip():
-	var first_index = description.find("\n\nYou can define additional values between the minimum and maximum values.")
+	var first_index = description.find("You can define additional values between the minimum and maximum values.")
 	var tooltip_desc : String = description.substr(0,first_index)
 	attempt_set_url(tooltip_desc)
 	tooltip.tooltip = Utilities.markdown_bold_to_bbcode(tooltip_desc)
@@ -63,16 +71,16 @@ func get_setting_value() -> Variant:
 
 func init(data: Dictionary, option_name : String):
 	super(data,option_name)
-	var first_index = description.find("\n\nYou can define additional values between the minimum and maximum values.")
-	var find_vals_str = description.substr(first_index,description.length())
+	var first_index = description.find("You can define additional values between the minimum and maximum values.")
+	var find_vals_str = description.substr(first_index)
 	var min_val_start_index : int = find_vals_str.find("Minimum value is")
-	var min_val_end_index : int = find_vals_str.substr(min_val_start_index,find_vals_str.length()).find("\n")
+	var min_val_end_index : int = find_vals_str.substr(min_val_start_index).find("\n")
 	var min_val_string = find_vals_str.substr(min_val_start_index,min_val_end_index)
 	var min_string = min_val_string.replace("Minimum value is","").strip_edges()
 	var v_min : int = int(min_string)
 	
 	var max_val_start_index : int = find_vals_str.find("Maximum value is")
-	var max_val_string = find_vals_str.substr(max_val_start_index,find_vals_str.length())
+	var max_val_string = find_vals_str.substr(max_val_start_index)
 	var max_string = max_val_string.replace("Maximum value is","").strip_edges()
 	var v_max : int = int(max_string)
 	
@@ -85,6 +93,6 @@ func init(data: Dictionary, option_name : String):
 		if(data["value"].keys()[0].is_valid_int()):
 			slider.value = int(data["value"].keys()[0])
 	value_changed(slider.value)
-	
-	
+	init_value = value
+	reset_default_button.visible = false
 	pass

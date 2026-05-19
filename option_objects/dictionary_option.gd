@@ -34,9 +34,16 @@ func _ready() -> void:
 	clear_dictionary_button.pressed.connect(clear_dictionary)
 	add_button.pressed.connect(add_item_from_button)
 	key_input.text_submitted.connect(add_item)
-	
+	reset_default_button.pressed.connect(reset_default)
+	if(spawned_by_dict):
+		reset_default_button.visible = false
 	if Settingload.load_settings and !spawned_by_dict:
 		load_setting()
+	pass
+
+func reset_default():
+	clear_dictionary()
+	init_values(init_value)
 	pass
 
 func load_setting():
@@ -127,16 +134,17 @@ func clear_dictionary():
 	for child in trash_icon_list.get_children():
 		child.queue_free()
 	c_index = 0
+	if ! spawned_by_dict:
+		reset_default_button.visible = true
 
 func remove_item(trash_icon: DictionaryTrashButton):
 	var _index = trash_icon.get_index()
 	fold.child_options[_index].queue_free()
 	fold.child_options.remove_at(_index)
 	trash_icon.queue_free()
+	if ! spawned_by_dict:
+		reset_default_button.visible = true
 	pass
-
-func value_changed(_index : int):
-	value = "value"
 
 func create_tooltip():
 	var tooltip_desc : String = description
@@ -248,6 +256,8 @@ func add_item(_value, _force_type: String = "", _force_name : String = "", _defa
 	key_input.text = ""
 	fold.call_deferred("reorder_children")
 	call_deferred("section_option_labels_resize")
+	if ! spawned_by_dict:
+		reset_default_button.visible = true
 
 func section_option_labels_resize():
 	var widest_label  : float = fold.get_widest_label()
@@ -271,6 +281,8 @@ func init(data: Dictionary, option_name : String):
 		type_tooltip.tooltip += "\n\n[color=#a6e3a1][b]This is a common archipelago option, dictionary value type has been locked in for you.[/b][/color]"
 		pass
 	init_values(data["value"])
+	init_value = data["value"]
+	reset_default_button.visible = true
 
 func init_values(value_data: Dictionary):
 	for key in value_data:
