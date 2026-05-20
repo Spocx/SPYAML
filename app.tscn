@@ -183,18 +183,18 @@ save_yaml_popup = NodePath("save yaml popup")
 save_settings_popup = NodePath("save settings popup")
 load_settings_popup = NodePath("load settings popup")
 load_settings_select_yaml_popup = NodePath("load settings select yaml")
-template_selector = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer/YAMLSelector")
-load_template_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/load template")
-yaml_folder_warning = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/apworld_folder_warning")
-locate_template_folder_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/locate template folder")
-manual_locate_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/manual locate")
-save_yaml_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/save yaml button")
-save_yaml_template_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/save yaml template")
+template_selector = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer/YAMLSelector")
+load_template_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/load template")
+yaml_folder_warning = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/apworld_folder_warning")
+locate_template_folder_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/locate template folder")
+manual_locate_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/manual locate")
+save_yaml_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/save yaml button")
+save_yaml_template_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/save yaml template")
 load_yaml_to_start_panel = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay")
-yaml_saved_to_text = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/yamlsavedtotext")
-save_settings_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer/MarginContainer/VBoxContainer/save settings")
-load_settings_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer/MarginContainer/VBoxContainer/load settings")
-player_name_field = NodePath("bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/PlayerName")
+yaml_saved_to_text = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/yamlsavedtotext")
+save_settings_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer/MarginContainer/VBoxContainer/save settings")
+load_settings_button = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer/MarginContainer/VBoxContainer/load settings")
+player_name_field = NodePath("bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/PlayerName")
 game_name_label = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit/RichTextLabel")
 requirements_label = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit2/RichTextLabel")
 requirements_tooltip = NodePath("bgpanel/spacer/content/Panel3/VBoxContainer/topbar/MarginContainer/HBoxContainer/VBoxContainer/LineEdit2/RichTextLabel/tooltip_ball")
@@ -261,34 +261,44 @@ texture = ExtResource("3_i4801")
 expand_mode = 5
 stretch_mode = 4
 
-[node name="top items" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=259545432]
+[node name="ScrollContainer" type="ScrollContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=189669858]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer" unique_id=1118686725]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="top items" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer" unique_id=259545432]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="MarginContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items" unique_id=20422870]
+[node name="MarginContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items" unique_id=20422870]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7iiwk")
 
-[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer" unique_id=414923820]
+[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer" unique_id=414923820]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a37lv")
 
-[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer" unique_id=1294338479]
+[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer" unique_id=1294338479]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="template options" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer" unique_id=825138829]
+[node name="template options" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer" unique_id=825138829]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=637024806]
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=637024806]
 layout_mode = 2
 
-[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer" unique_id=373896103 instance=ExtResource("4_nee2x")]
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/HBoxContainer" unique_id=373896103 instance=ExtResource("4_nee2x")]
 layout_mode = 2
 tooltip = "This section scans [color=#a6e3a1]YAML[/color] files in your selected template folder. folder can be selected with the [color=#fab387]locate template folder[/color] button below
 
@@ -298,13 +308,13 @@ if this folder is found it is set by default but feel free to change it.
 
 [color=#f38ba8]if the templates folder does not exist in your achipelago_install/players folder you likely still need to generate it. you can do this by opening the archipelago launcher -> generate template options. running this command will also open the location where the templates have been generated[/color]"
 
-[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer" unique_id=9769549]
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/HBoxContainer" unique_id=9769549]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_7iiwk")
 text = "Template YAML"
 
-[node name="apworld_folder_warning" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=2024713597]
+[node name="apworld_folder_warning" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=2024713597]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9529412, 0.54509807, 0.65882355, 1)
@@ -314,7 +324,7 @@ theme_override_font_sizes/font_size = 9
 text = "no default yaml folder selected or no yaml files found in selected folder please reselect using the \"locate template folder\" button"
 autowrap_mode = 2
 
-[node name="template select" type="OptionButton" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=562809723]
+[node name="template select" type="OptionButton" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=562809723]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.79607844, 0.6509804, 0.96862745, 1)
@@ -322,16 +332,16 @@ disabled = true
 clip_text = true
 fit_to_longest_item = false
 
-[node name="Panel" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1605912159]
+[node name="Panel" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=1605912159]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ra7kh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel" unique_id=2146768095]
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel" unique_id=2146768095]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="LineEdit" type="LineEdit" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=611366771 node_paths=PackedStringArray("item_container")]
+[node name="LineEdit" type="LineEdit" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=611366771 node_paths=PackedStringArray("item_container")]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7iiwk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gjbw5")
@@ -346,35 +356,35 @@ caret_blink = true
 script = ExtResource("7_gtgpg")
 item_container = NodePath("../HBoxContainer/PanelContainer/ScrollContainer/YAMLSelector")
 
-[node name="HSeparator3" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=1242309972]
+[node name="HSeparator3" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=1242309972]
 layout_mode = 2
 theme_override_constants/separation = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=368923470]
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=368923470]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=1106811117]
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=1106811117]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jq15t")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1770484001]
+[node name="ScrollContainer" type="ScrollContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1770484001]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="YAMLSelector" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer" unique_id=1131132170]
+[node name="YAMLSelector" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer" unique_id=1131132170]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 script = ExtResource("8_jq15t")
 
-[node name="fadebartop" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=221880577 node_paths=PackedStringArray("container", "scroll_container")]
+[node name="fadebartop" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=221880577 node_paths=PackedStringArray("container", "scroll_container")]
 modulate = Color(0.05490196, 0.05490196, 0.08235294, 1)
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
@@ -384,9 +394,9 @@ texture = ExtResource("5_v7vdx")
 expand_mode = 1
 script = ExtResource("7_x8rub")
 container = NodePath("../ScrollContainer/YAMLSelector")
-scroll_container = NodePath("../../../../../../../../../../../../Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer")
+scroll_container = NodePath("../../../../../../../../../../../../../../Panel3/VBoxContainer/option area/HBoxContainer/options/ScrollContainer")
 
-[node name="fadebarbottom" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1270292462 node_paths=PackedStringArray("container", "scroll_container")]
+[node name="fadebarbottom" type="TextureRect" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1270292462 node_paths=PackedStringArray("container", "scroll_container")]
 modulate = Color(0.05490196, 0.05490196, 0.08235294, 1)
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
@@ -400,17 +410,17 @@ container = NodePath("../ScrollContainer/YAMLSelector")
 scroll_container = NodePath("../ScrollContainer")
 is_top = false
 
-[node name="VSeparator2" type="VSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=805809981]
+[node name="VSeparator2" type="VSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=805809981]
 layout_mode = 2
 theme_override_constants/separation = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_nee2x")
 
-[node name="scroll" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=972399699]
+[node name="scroll" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer" unique_id=972399699]
 custom_minimum_size = Vector2(10, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5oejy")
 
-[node name="optionscroll" type="VScrollBar" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/scroll" unique_id=288490778 node_paths=PackedStringArray("scroll_container", "cparent", "seperator")]
+[node name="optionscroll" type="VScrollBar" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer/HBoxContainer/scroll" unique_id=288490778 node_paths=PackedStringArray("scroll_container", "cparent", "seperator")]
 layout_mode = 2
 size_flags_horizontal = 1
 max_value = 1000.0
@@ -419,97 +429,97 @@ scroll_container = NodePath("../../PanelContainer/ScrollContainer")
 cparent = NodePath("..")
 seperator = NodePath("../../VSeparator2")
 
-[node name="HSeparator4" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=255025851]
+[node name="HSeparator4" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/Panel/VBoxContainer" unique_id=255025851]
 layout_mode = 2
 theme_override_constants/separation = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_x8rub")
 
-[node name="load template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1618772526]
+[node name="load template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=1618772526]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7iiwk")
 disabled = true
 text = "load YAML"
 
-[node name="locate template folder" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1882936438]
+[node name="locate template folder" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=1882936438]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7iiwk")
 text = "locate template folder"
 
-[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=593193173]
+[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=593193173]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=1032629261]
+[node name="HBoxContainer2" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=1032629261]
 layout_mode = 2
 
-[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer2" unique_id=259163291 instance=ExtResource("4_nee2x")]
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/HBoxContainer2" unique_id=259163291 instance=ExtResource("4_nee2x")]
 layout_mode = 2
 tooltip = "use this to manually select a [color=#a6e3a1]YAML[/color] file
 
 it's also possible to [color=#a6e3a1]drag and drop a YAML file onto the application window directly[/color]."
 
-[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options/HBoxContainer2" unique_id=529816475]
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options/HBoxContainer2" unique_id=529816475]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_7iiwk")
 text = "Manual YAML locate"
 
-[node name="manual locate" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/top items/MarginContainer/MarginContainer/template options" unique_id=2138666871]
+[node name="manual locate" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/MarginContainer/MarginContainer/template options" unique_id=2138666871]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7iiwk")
 text = "locate YAML"
 
-[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items" unique_id=32325258]
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items" unique_id=32325258]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_a37lv")
 
-[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer" unique_id=1338338158]
+[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/PanelContainer" unique_id=1338338158]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a37lv")
 
-[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer" unique_id=346846601]
+[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/PanelContainer" unique_id=346846601]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="manual apworld file select" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/top items/PanelContainer/MarginContainer" unique_id=225429162]
+[node name="manual apworld file select" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/top items/PanelContainer/MarginContainer" unique_id=225429162]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=31617735]
+[node name="HSeparator" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer" unique_id=31617735]
 layout_mode = 2
 
-[node name="settingssaveload" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=901598232]
+[node name="settingssaveload" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer" unique_id=901598232]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload" unique_id=1496038885]
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload" unique_id=1496038885]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ra7kh")
 
-[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer" unique_id=901293357]
+[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer" unique_id=901293357]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a37lv")
 
-[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer" unique_id=967906589]
+[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer" unique_id=967906589]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer/MarginContainer" unique_id=778176454]
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer/MarginContainer" unique_id=778176454]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer/MarginContainer/VBoxContainer" unique_id=1728384618]
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer/MarginContainer/VBoxContainer" unique_id=1728384618]
 layout_mode = 2
 
-[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=655826008 instance=ExtResource("4_nee2x")]
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=655826008 instance=ExtResource("4_nee2x")]
 layout_mode = 2
 tooltip = "these buttons let you save or load [color=#a6e3a1]YAML[/color] settings to later load them back as template
 
@@ -517,63 +527,63 @@ tooltip = "these buttons let you save or load [color=#a6e3a1]YAML[/color] settin
 
 [color=#a6e3a1]Load settings[/color]: will load an [color=#a6e3a1]spyaml[/color] file into the editor, effectively letting you continue your settings edit where you left of when you saved it."
 
-[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=791208790]
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=791208790]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_7iiwk")
 text = "Save/Load Settings"
 
-[node name="save settings" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer/MarginContainer/VBoxContainer" unique_id=843219997]
+[node name="save settings" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer/MarginContainer/VBoxContainer" unique_id=843219997]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 disabled = true
 text = "save settings"
 
-[node name="load settings" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/settingssaveload/PanelContainer/MarginContainer/VBoxContainer" unique_id=1961181190]
+[node name="load settings" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/settingssaveload/PanelContainer/MarginContainer/VBoxContainer" unique_id=1961181190]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "load settings"
 
-[node name="HSeparator2" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=912673651]
+[node name="HSeparator2" type="HSeparator" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer" unique_id=912673651]
 layout_mode = 2
 
-[node name="bottombuttons" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=144276551]
+[node name="bottombuttons" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer" unique_id=144276551]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons" unique_id=895224588]
+[node name="PanelContainer" type="PanelContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons" unique_id=895224588]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ra7kh")
 
-[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer" unique_id=1490187232]
+[node name="ColorRect" type="Panel" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer" unique_id=1490187232]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a37lv")
 
-[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer" unique_id=950359952]
+[node name="MarginContainer" type="MarginContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer" unique_id=950359952]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer" unique_id=192670340]
+[node name="VBoxContainer" type="VBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer" unique_id=192670340]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=912946525]
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=912946525]
 layout_mode = 2
 
-[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1988125455 instance=ExtResource("4_nee2x")]
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1988125455 instance=ExtResource("4_nee2x")]
 layout_mode = 2
 tooltip = "use this to export your [color=#a6e3a1]YAML[/color] settings file
 
 [color=#a6e3a1]Save YAML file[/color]: will export your yaml to a compacted uncommented file to be used for game generation. [color=#fab387]Player name will be set to yaml file name if field is left empty![/color]"
 
-[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=133554524]
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=133554524]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_7iiwk")
 text = "Export"
 
-[node name="yamlsavedtotext" type="RichTextLabel" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=1133347895]
+[node name="yamlsavedtotext" type="RichTextLabel" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=1133347895]
 clip_contents = false
 layout_mode = 2
 theme_override_fonts/mono_font = ExtResource("6_7iiwk")
@@ -584,35 +594,35 @@ fit_content = true
 scroll_active = false
 script = ExtResource("7_a37lv")
 
-[node name="save yaml template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=994435136]
+[node name="save yaml template" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=994435136]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 disabled = true
 text = "save as template"
 
-[node name="PlayerName" type="LineEdit" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=288032276]
+[node name="PlayerName" type="LineEdit" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=288032276]
 layout_mode = 2
 placeholder_text = "player name"
 context_menu_enabled = false
 emoji_menu_enabled = false
 caret_blink = true
 
-[node name="save yaml button" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=769243463]
+[node name="save yaml button" type="Button" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/bottombuttons/PanelContainer/MarginContainer/VBoxContainer" unique_id=769243463]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 disabled = true
 text = "save YAML file"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content" unique_id=2082096218]
+[node name="HBoxContainer" type="HBoxContainer" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer" unique_id=2082096218]
 visible = false
 layout_mode = 2
 
-[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/HBoxContainer" unique_id=1954223543 instance=ExtResource("4_nee2x")]
+[node name="tooltip_ball" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1954223543 instance=ExtResource("4_nee2x")]
 layout_mode = 2
 tooltip = "This editor doesn't use the archipelago codebase, instead it directly parses archipelago YAML files into the editor. this means the editor is not aware of the items or locations for the selected games. as a consequence, options with lists that allow to enable/disable things like items or locations need to be filled in manually without any autocorrect or error check if the item/location actually exists. it's still possibe to edit the values, you just need to know the names of the checks or items you want to fill in."
 
-[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/HBoxContainer" unique_id=1137822086]
+[node name="title" type="Label" parent="bgpanel/spacer/content/left bar/spacer/content/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1137822086]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_7iiwk")
 text = "Disclaimer"
@@ -807,6 +817,7 @@ theme_override_font_sizes/font_size = 24
 text = "Load a YAML/SPYAML file to get started"
 horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="bgpanel/spacer/content/Panel3/VBoxContainer/option area/HBoxContainer/options/loadYAMLtoStartOverlay" unique_id=812191826]
 self_modulate = Color(0.17254902, 0.17254902, 0.23137255, 1)

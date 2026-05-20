@@ -53,7 +53,23 @@ func _save():
 func _ready() -> void:
 	_connect_signals()
 	_check_template_folder_popup()
+	var ui_size = DisplayServer.screen_get_dpi() / 96.0
+	get_tree().root.content_scale_factor = ui_size
 	
+	var output = []
+	OS.execute(
+	"cmd.exe",
+	[
+		"/c",
+        'cd /d "C://ProgramData/Archipelago" && ArchipelagoLauncher.exe "Export World Data"'
+	],
+	output
+	)
+	#OS.execute("C:/ProgramData/Archipelago/ArchipelagoLauncher.exe",["Export World Data"],output)
+	#print(output)
+	
+	
+
 func _connect_signals():
 	get_window().files_dropped.connect(_file_dropped)
 	locate_template_folder_button.pressed.connect(_template_folder_popup)
